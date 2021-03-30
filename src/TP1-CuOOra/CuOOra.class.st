@@ -27,6 +27,7 @@ usuarios add: nuevoUsuario .
 
 { #category : #'as yet unclassified' }
 CuOOra >> buscarTopicoParaPreguntar: topicosRelacionada titulo: unTitulo descripcion: unaDescripcion usuario: unUsuario [
+"hay que modificar"
 	(topicos select: [ :each | each includesAny: topicosRelacionada ])
 		agregarPregunta: unTitulo
 		descripcion: unaDescripcion
