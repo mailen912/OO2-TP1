@@ -69,6 +69,14 @@ CuOOra >> obtenerPreguntasRealizadasPor:unUsuario [
 ^topicos flatCollect: [ :topico | topico obtenerPreguntasRealizadasPor: unUsuario  ]
 ]
 
+{ #category : #'as yet unclassified' }
+CuOOra >> obtenerRespuestasRealizadasPor: unUsuario [
+	"Recorre todos los topicos para obtener las respuestas que realizo el usuario pasado por parametro"
+
+	^ topicos
+		flatCollect: [ :topico | topico obtenerRespuestasRealizadasPor: unUsuario ]
+]
+
 { #category : #accessing }
 CuOOra >> topicos [
 	^ topicos

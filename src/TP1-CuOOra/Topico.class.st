@@ -82,8 +82,8 @@ Topico >> obtenerRespuestasRealizadasPor: unUsuario [
 	"Recorre todas sus preguntas,le delega la responsabilidad a cada una de ellas de obtener una coleccion de respuestas en las que coincida el parametro con el creador y retorna esa coleccion "
 
 	^ preguntas
-		flatCollect: [ :pregunta | pregunta obtenerRespuestasPor: unUsuario ]
-
+		flatCollect:  [ :pregunta | pregunta obtenerRespuestasPor: unUsuario ]
+		
 ]
 
 { #category : #'as yet unclassified' }
