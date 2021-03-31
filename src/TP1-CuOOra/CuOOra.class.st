@@ -63,6 +63,12 @@ usuarios:= OrderedCollection new.
 topicos := OrderedCollection new.
 ]
 
+{ #category : #'as yet unclassified' }
+CuOOra >> obtenerPreguntasRealizadasPor:unUsuario [
+"Busca entre todos los topicos las preguntas realizadas por el usuario pasado por parametro"
+^topicos flatCollect: [ :topico | topico obtenerPreguntasRealizadasPor: unUsuario  ]
+]
+
 { #category : #accessing }
 CuOOra >> topicos [
 	^ topicos
