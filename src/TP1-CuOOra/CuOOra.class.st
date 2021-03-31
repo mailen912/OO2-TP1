@@ -9,6 +9,15 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+CuOOra >> agregarPreguntaALosTopicos: topicosRelacionada titulo: unTitulo descripcion: unaDescripcion usuario: unUsuario [
+"A cada topico le agregar la pregunta relacionada"
+	topicosRelacionada do:[	:each | each agregarPregunta: unTitulo
+		descripcion: unaDescripcion
+		usuario: unUsuario]
+
+]
+
+{ #category : #'as yet unclassified' }
 CuOOra >> agregarTopicoConNombre: nombre yDescripcion:descrip [
 "agrega un topico nuevo a la coleccion de topicos"
 |nuevoTopico|
@@ -22,16 +31,6 @@ CuOOra >> agregarUsuarioConNombre: nombre yContraseña:contra [
 |nuevoUsuario|
 nuevoUsuario:= Usuario nombreDeUsuario: nombre contraseña: contra.
 usuarios add: nuevoUsuario .
-
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> buscarTopicoParaPreguntar: topicosRelacionada titulo: unTitulo descripcion: unaDescripcion usuario: unUsuario [
-"hay que modificar"
-	(topicos select: [ :each | each includesAny: topicosRelacionada ])
-		agregarPregunta: unTitulo
-		descripcion: unaDescripcion
-		usuario: unUsuario
 
 ]
 
