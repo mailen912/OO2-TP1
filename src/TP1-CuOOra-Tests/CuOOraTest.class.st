@@ -94,3 +94,38 @@ self assert: (cuoora obtenerPreguntasRealizadasPor: usuario)size equals:0.
 				"El usuario realizo dos preguntas"
 				self assert: (cuoora obtenerPreguntasRealizadasPor: usuario)size equals:2.
 ]
+
+{ #category : #tests }
+CuOOraTest >> testObtenerRespuestasRealizadasPor [
+	| usuario |
+	usuario := Usuario nombreDeUsuario: 'xyz' contraseña: 'clave123'.
+	"El usuario no respondio a ninguna pregunta"
+	self
+		assert: (cuoora obtenerPreguntasRealizadasPor: usuario) size
+		equals: 0.
+	cuoora
+		agregarTopicoConNombre: 'Smalltalk'
+			yDescripcion: 'orientado a objetos';
+		agregarTopicoConNombre: 'Pharo'
+			yDescripcion: 'orientacion a objetos 1'.
+	cuoora topicos first
+		agregarPregunta: 'Pregunta 1'
+		descripcion: 'Descripcion 1'
+		usuario: usuario.
+	cuoora topicos first obtenerTodasLasPreguntas first
+		agregarRespuesta: 'Res 1'
+		creador: usuario.
+	cuoora topicos last
+		agregarPregunta: 'Pregunta 2'
+		descripcion: 'Descripcion 2'
+		usuario: usuario.
+	cuoora topicos first obtenerTodasLasPreguntas first
+		agregarRespuesta: 'Res 2'
+		creador: usuario.
+	"El usuario respondio a dos preguntas de dos topicos diferentes"
+	self
+		assert: (cuoora obtenerRespuestasRealizadasPor: usuario) size
+		equals: 2.
+		self assert: (cuoora obtenerRespuestasRealizadasPor: usuario) first texto
+		equals: 'Res 1'.
+]
