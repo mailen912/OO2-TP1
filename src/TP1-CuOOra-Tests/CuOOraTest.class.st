@@ -77,3 +77,20 @@ CuOOraTest >> testCalcularPuntaje [
 		En el segunto topico no dio like/dislike a ninguna pregunta (0-0)y le dio like a una respuesta (1-0)"
 
 ]
+
+{ #category : #tests }
+CuOOraTest >> testObtenerPreguntasRealizadasPor [ 
+|usuario|
+usuario:=Usuario nombreDeUsuario: 'xyz' contraseña:'clave123'. 
+"El usuario no realizo preguntas"
+self assert: (cuoora obtenerPreguntasRealizadasPor: usuario)size equals:0.
+	cuoora
+		agregarTopicoConNombre: 'Smalltalk'
+			yDescripcion: 'orientado a objetos';
+		agregarTopicoConNombre: 'Pharo'
+			yDescripcion: 'orientacion a objetos 1'.
+			cuoora topicos first agregarPregunta: 'Pregunta 1' descripcion: 'Descripcion 1' usuario: usuario.
+				cuoora topicos last agregarPregunta: 'Pregunta 2' descripcion: 'Descripcion 2' usuario: usuario.
+				"El usuario realizo dos preguntas"
+				self assert: (cuoora obtenerPreguntasRealizadasPor: usuario)size equals:2.
+]
