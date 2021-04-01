@@ -22,7 +22,9 @@ Topico >> agregarPregunta: unTitulo descripcion: unaDescripcion usuario: unUsuar
 		newConTitulo: unTitulo
 		descripcion: unaDescripcion
 		yUsuario: unUsuario.
-	preguntas add: nuevaPregunta
+	preguntas add: nuevaPregunta.
+	^nuevaPregunta
+
 
 ]
 
