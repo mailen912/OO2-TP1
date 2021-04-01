@@ -5,6 +5,9 @@ Class {
 		'usuarios',
 		'topicos'
 	],
+	#classInstVars : [
+		'soleIntance'
+	],
 	#category : #'TP1-CuOOra'
 }
 
@@ -81,6 +84,15 @@ CuOOra >> obtenerRespuestasRealizadasPor: unUsuario [
 CuOOra >> topicos [
 	^ topicos
 
+]
+
+{ #category : #'as yet unclassified' }
+CuOOra >> usuarioConNombreDeUsuario: unNombre yContraseña: unaContra [
+"Retorna el usuario si esta registrado en el sistema caso contrario retorna nil"
+	^ usuarios
+		detect:
+			[ :usuario | usuario nombreUsuario = unNombre & (usuario contraseña = unaContra) ]
+		ifNone: [ nil ]
 ]
 
 { #category : #accessing }
