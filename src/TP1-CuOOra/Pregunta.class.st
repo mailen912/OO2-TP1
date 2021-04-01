@@ -21,7 +21,8 @@ Pregunta class >> newConTitulo: unTitulo descripcion: unaDescripcion yUsuario: u
 Pregunta >> agregarRespuesta: texto creador: unUsuario [
 	| nuevaRespuesta |
 	nuevaRespuesta := Respuesta conTexto: texto  yCreador:unUsuario.
-	respuestas add: nuevaRespuesta
+	respuestas add: nuevaRespuesta.
+	^nuevaRespuesta
 
 
 ]

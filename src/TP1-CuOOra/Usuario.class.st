@@ -43,6 +43,12 @@ Usuario >> nombreUsuario [
 ]
 
 { #category : #'as yet unclassified' }
+Usuario >> obtenerPreguntasDeTopicosDeInteres [
+"Devuelve una coleccion de todas las preguntas de todos los topicos de interes del usuario"
+^topicosDeInteres flatCollect: [ :topi|topi obtenerTodasLasPreguntas ]
+]
+
+{ #category : #'as yet unclassified' }
 Usuario >> registrarTopicoDeInteres:topico [ 
 "se agrega el topico a la coleccion de topicos de interes del usuario"
 topicosDeInteres add: topico 
@@ -52,4 +58,10 @@ topicosDeInteres add: topico
 Usuario >> seguirUsuario: unUsuario [
 	siguiendo add: unUsuario
 
+]
+
+{ #category : #accessing }
+Usuario >> siguiendo [
+"devuelve una coleccion de todos los usuarios a los que sigue"
+^siguiendo 
 ]

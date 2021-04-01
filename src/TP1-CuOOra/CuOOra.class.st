@@ -5,9 +5,6 @@ Class {
 		'usuarios',
 		'topicos'
 	],
-	#classInstVars : [
-		'soleIntance'
-	],
 	#category : #'TP1-CuOOra'
 }
 
@@ -36,6 +33,7 @@ CuOOra >> agregarTopicoConNombre: nombre yDescripcion:descrip [
 |nuevoTopico|
 nuevoTopico:= Topico nombreDeTopico: nombre descripcion:descrip. 
 topicos add: nuevoTopico .
+^nuevoTopico 
 ]
 
 { #category : #'as yet unclassified' }
@@ -44,6 +42,7 @@ CuOOra >> agregarUsuarioConNombre: nombre yContraseña:contra [
 |nuevoUsuario|
 nuevoUsuario:= Usuario nombreDeUsuario: nombre contraseña: contra.
 usuarios add: nuevoUsuario .
+^nuevoUsuario 
 
 ]
 
@@ -80,6 +79,16 @@ topicos := OrderedCollection new.
 CuOOra >> obtenerPreguntasRealizadasPor:unUsuario [
 "Busca entre todos los topicos las preguntas realizadas por el usuario pasado por parametro"
 ^topicos flatCollect: [ :topico | topico obtenerPreguntasRealizadasPor: unUsuario  ]
+]
+
+{ #category : #'as yet unclassified' }
+CuOOra >> obtenerPreguntasRelevantes:usuario [
+"Obtener preguntas relevantes para un usuario determinado: Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
+|todas|
+todas:=Set new.
+todas:=usuario siguiendo flatCollect: [ :user| self obtenerPreguntasRealizadasPor: user ].
+todas addAll: usuario obtenerPreguntasDeTopicosDeInteres .
+^todas
 ]
 
 { #category : #'as yet unclassified' }
