@@ -11,6 +11,16 @@ Class {
 	#category : #'TP1-CuOOra'
 }
 
+{ #category : #'instance creation' }
+CuOOra class >> clearInstance [
+	soleIntance :=nil
+]
+
+{ #category : #'instance creation' }
+CuOOra class >> soleInstance [ 
+^ soleIntance ifNil: [ soleIntance :=self new ]
+]
+
 { #category : #'as yet unclassified' }
 CuOOra >> agregarPreguntaALosTopicos: topicosRelacionada titulo: unTitulo descripcion: unaDescripcion usuario: unUsuario [
 "A cada topico le agregar la pregunta relacionada"
