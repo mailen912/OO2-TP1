@@ -5,17 +5,20 @@ Class {
 		'usuarios',
 		'topicos'
 	],
+	#classInstVars : [
+		'soleInstance'
+	],
 	#category : #'TP1-CuOOra'
 }
 
 { #category : #'instance creation' }
 CuOOra class >> clearInstance [
-	soleIntance :=nil
+	soleInstance := nil
 ]
 
 { #category : #'instance creation' }
-CuOOra class >> soleInstance [ 
-^ soleIntance ifNil: [ soleIntance :=self new ]
+CuOOra class >> soleInstance [
+	^ soleInstance ifNil: [ soleInstance := self new ]
 ]
 
 { #category : #'as yet unclassified' }
