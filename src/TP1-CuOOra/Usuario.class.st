@@ -21,6 +21,11 @@ Usuario >> cantidadTopicosDeInteres [
 ^topicosDeInteres size
 ]
 
+{ #category : #accessing }
+Usuario >> contraseña [ 
+^contraseña 
+]
+
 { #category : #initialization }
 Usuario >> nombreDeUsuario:nombre contraseña: password [ 
 "inicializa los valores de un usuario"
@@ -30,6 +35,11 @@ fechaYhoraCreacion := DateAndTime now.
 siguiendo :=OrderedCollection new.
 topicosDeInteres:= OrderedCollection new.
 
+]
+
+{ #category : #accessing }
+Usuario >> nombreUsuario [ 
+^nombreUsuario 
 ]
 
 { #category : #'as yet unclassified' }
