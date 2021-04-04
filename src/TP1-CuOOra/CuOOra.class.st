@@ -75,7 +75,24 @@ CuOOra >> esMiTopico: topicosRelacionada [
 { #category : #initialization }
 CuOOra >> initialize [ 
 usuarios:= OrderedCollection new.
+
 topicos := OrderedCollection new.
+self initializeConDatos.
+]
+
+{ #category : #initialization }
+CuOOra >> initializeConDatos [
+
+self agregarUsuarioConNombre: 'Mailen' yContraseña:  '1234'
+]
+
+{ #category : #'as yet unclassified' }
+CuOOra >> listado:usuario [ 
+"devuelve el listado de las últimas 5 preguntas relevantes ordenadas según su fecha de creación. Por cada pregunta, se muestra su autor, cuántas respuestas tiene, y la cantidad de likes y dislikes
+"
+|preguntas|
+preguntas:=(self obtenerPreguntasRelevantes: usuario) asSortedCollection:[:unaPreg :otraPreg | unaPreg fechaHora  > otraPreg fechaHora ]. 
+^preguntas 
 ]
 
 { #category : #'as yet unclassified' }

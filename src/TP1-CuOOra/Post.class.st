@@ -27,6 +27,17 @@ Post >> cantidadDeLikes [
 ]
 
 { #category : #accessing }
+Post >> creador [
+^creador
+]
+
+{ #category : #accessing }
+Post >> fechaHora [
+"devuelve la fecha y hora de creacion de la pregunta"
+^fechaHora 
+]
+
+{ #category : #accessing }
 Post >> haceDislikeUnUsuario: usuariox [
 	"puede hacer uno solo(no debe estar en la coleccion dislikes) y
  si antes hizo like (si esta en likes) lo debo eliminar"

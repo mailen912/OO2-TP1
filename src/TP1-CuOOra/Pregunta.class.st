@@ -28,6 +28,11 @@ Pregunta >> agregarRespuesta: texto creador: unUsuario [
 ]
 
 { #category : #'as yet unclassified' }
+Pregunta >> cantidadRespuestas [
+^(respuestas size)
+]
+
+{ #category : #'as yet unclassified' }
 Pregunta >> eliminarRespuestas [
            "Elimina todas sus respuestas"
 	respuestas removeAll
