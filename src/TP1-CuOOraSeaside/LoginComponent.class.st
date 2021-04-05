@@ -20,7 +20,7 @@ LoginComponent >> contraseña: unaContra [
 
 { #category : #rendering }
 LoginComponent >> login [ 
-	(self model )
+	(self model agregarUsuarioConNombre: nombreUsuario  yContraseña:contraseña   )
 		ifNotNil: [ :it | self proceedWith: it ].
 	nombreUsuario  := nil.
 	contraseña  := nil

@@ -82,8 +82,17 @@ self initializeConDatos.
 
 { #category : #initialization }
 CuOOra >> initializeConDatos [
+"Para probar avance en la interfaz"
+|usuario1 topicoInteres usuario2 topicoComun|
+usuario2:=self agregarUsuarioConNombre: 'Lujan' yContraseña:  '3333'.
+topicoComun:= self agregarTopicoConNombre: 'Java' yDescripcion:'Orientado a Objetos' .
+topicoInteres := self agregarTopicoConNombre: 'Seside' yDescripcion:'Interfaz web' .
+topicoInteres agregarPregunta: 'Caja' descripcion:'caja negra o caja blanca?'  usuario:usuario2.
+topicoComun agregarPregunta: 'Orientacion a objetos' descripcion:'es puro?'  usuario: usuario2.
+usuario1:=self agregarUsuarioConNombre: 'Mailen' yContraseña:  '1234'.
+usuario1 registrarTopicoDeInteres: topicoInteres .
+usuario1 seguirUsuario: usuario2 .
 
-self agregarUsuarioConNombre: 'Mailen' yContraseña:  '1234'
 ]
 
 { #category : #'as yet unclassified' }
