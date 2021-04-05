@@ -23,5 +23,6 @@ HomeComponent >> renderPostsOn: aCanvas [
 		level: 2;
 		with: 'Ultimas Preguntas'.
 	aCanvas
-		unorderedList: [ ((CuOOra soleInstance ) listado: self session usuario) do:[:preg| aCanvas listItem: preg creador]]
+		unorderedList: [ ((CuOOra soleInstance )  listado: self session usuario)
+				do: [ :preg | aCanvas listItem: preg creador ] ]
 ]

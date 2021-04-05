@@ -43,8 +43,8 @@ LoginComponent >> nombreUsuario: unNombre [
 
 { #category : #'as yet unclassified' }
 LoginComponent >> proceedWith: aUser [
-  self session usuario: aUser.
-		self call: HomeComponent new
+	self session usuario: aUser.
+	self call: HomeComponent new
 ]
 
 { #category : #accessing }

@@ -18,10 +18,11 @@ cuoora:= CuOOra new.
 
 { #category : #tests }
 CuOOraTest >> testAgregarTopicoConNombreyDescripcion [
-self assert: cuoora cantidadDeTopicos equals: 0.
-
-  cuoora agregarTopicoConNombre: 'Smalltalk' yDescripcion: 'orientado a objetos'.
-self assert: cuoora cantidadDeTopicos  equals: 1.
+	self assert: cuoora cantidadDeTopicos equals: 0.
+	cuoora
+		agregarTopicoConNombre: 'Smalltalk'
+		yDescripcion: 'orientado a objetos'.
+	self assert: cuoora cantidadDeTopicos equals: 1
 ]
 
 { #category : #tests }

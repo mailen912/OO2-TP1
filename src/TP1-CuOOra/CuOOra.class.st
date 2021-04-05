@@ -127,11 +127,13 @@ CuOOra >> topicos [
 
 { #category : #'as yet unclassified' }
 CuOOra >> usuarioConNombreDeUsuario: unNombre yContraseña: unaContra [
-"Retorna el usuario si esta registrado en el sistema caso contrario retorna nil"
-	^ usuarios
+	"Retorna el usuario si esta registrado en el sistema caso contrario retorna nil"
+
+^usuarios
 		detect:
 			[ :usuario | usuario nombreUsuario = unNombre & (usuario contraseña = unaContra) ]
-		ifNone: [ nil ]
+		ifNone: [ nil ].
+	
 ]
 
 { #category : #accessing }
