@@ -73,17 +73,15 @@ CuOOra >> esMiTopico: topicosRelacionada [
 ]
 
 { #category : #initialization }
-CuOOra >> initialize [ 
-usuarios:= OrderedCollection new.
-
-topicos := OrderedCollection new.
-self initializeConDatos.
+CuOOra >> initialize [
+	usuarios := OrderedCollection new.
+	topicos := OrderedCollection new.
+	self initializeConDatos
 ]
 
 { #category : #initialization }
 CuOOra >> initializeConDatos [
-
-self agregarUsuarioConNombre: 'Mailen' yContraseña:  '1234'
+	self agregarUsuarioConNombre: 'Mailen' yContraseña: '1234'
 ]
 
 { #category : #'as yet unclassified' }

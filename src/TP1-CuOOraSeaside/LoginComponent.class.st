@@ -19,11 +19,12 @@ LoginComponent >> contraseña: unaContra [
 ]
 
 { #category : #rendering }
-LoginComponent >> login [ 
-	(self model )
-		ifNotNil: [ :it | self proceedWith: it ].
-	nombreUsuario  := nil.
-	contraseña  := nil
+LoginComponent >> login [
+	(self model
+		usuarioConNombreDeUsuario: nombreUsuario
+		yContraseña: contraseña) ifNotNil: [ :it | self proceedWith: it ].
+	nombreUsuario := nil.
+	contraseña := nil
 ]
 
 { #category : #accessing }
