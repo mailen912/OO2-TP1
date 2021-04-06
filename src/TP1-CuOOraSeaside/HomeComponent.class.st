@@ -21,5 +21,6 @@ HomeComponent >> renderPostsOn: aCanvas [
 		with: 'Ultimas Preguntas'.
 	aCanvas
 		unorderedList: [ ((CuOOra soleInstance )  listado: self session usuario)
-				do: [ :preg | aCanvas listItem: preg titulo;space;text: preg descripcion. ] ]
+				do: [ :preg | aCanvas listItem: preg titulo;space;text:'Realizada por '.
+					aCanvas strong with:(preg creador nombreUsuario).aCanvas text:' | ' ,(preg respuestas size)asString ,' repuestas'  ] ]
 ]
