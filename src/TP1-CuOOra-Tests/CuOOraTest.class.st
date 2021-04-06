@@ -27,6 +27,7 @@ CuOOraTest >> testAgregarTopicoConNombreyDescripcion [
 
 { #category : #tests }
 CuOOraTest >> testAgregarUsuarioConNombreyContraseña [ 
+"este test no da bien por la inicializacion de datos para pruebas"
 self assert: cuoora cantidadDeUsuarios equals: 0.
 
   cuoora agregarUsuarioConNombre: 'usuario232' yContraseña: '1231'.
