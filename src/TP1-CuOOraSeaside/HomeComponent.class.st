@@ -8,13 +8,10 @@ Class {
 HomeComponent >> renderContentOn: aCanvas [
 	aCanvas big:[aCanvas strong with: 'CuOOra'].	
 	aCanvas
-		space;
+		space;text:self session usuario nombreUsuario ;
 		horizontalRule.
    self renderPostsOn: aCanvas.
-"	aCanvas
-		form: [ self renderInputElementsOn: aCanvas.
-			self renderSignInButtonOn: aCanvas ]"
-		""
+
 ]
 
 { #category : #rendering }
