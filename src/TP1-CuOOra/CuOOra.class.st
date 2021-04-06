@@ -82,23 +82,20 @@ topicos := OrderedCollection new.
 
 { #category : #initialization }
 CuOOra >> initializeConDatos [
-"Para probar avance en la interfaz"
-|usuario1 usuario2 t1 t2 t3|
-usuario1:=self agregarUsuarioConNombre: 'Mailen' yContraseña:  '1234'.
-usuario2:=self agregarUsuarioConNombre: 'Lujan' yContraseña:  '3333'.
-t2:=self agregarTopicoConNombre: 'Seaside' yDescripcion: 'Interfaz web'.
-t3:= self agregarTopicoConNombre: 'Smalltalk' yDescripcion: 'Orientado a objetos'.
-t3 agregarPregunta: '¿Que es una coleccion?' descripcion:'Tipos de colecciones'  usuario:usuario1 .
-self agregarPreguntaALosTopicos: self topicos  titulo: 'OO2' descripcion: '¿Como utilizar Seaside con Samlltalk?' usuario: usuario1.
-self agregarPreguntaALosTopicos: self topicos  titulo: 'Repositorios' descripcion: '¿Como utilizar Iceberg?' usuario: usuario2.
-t1:= self agregarTopicoConNombre: 'Java' yDescripcion: 'Orientado a Objetos' .
-t1 agregarPregunta:'Orientacion a objetos' descripcion:'es puro?'  usuario: usuario2.
-usuario1 registrarTopicoDeInteres: t1.
-usuario1 registrarTopicoDeInteres: t2.
-usuario1 registrarTopicoDeInteres: t3.
-usuario2 registrarTopicoDeInteres: t2.
-usuario2 registrarTopicoDeInteres: t3.
-usuario1 seguirUsuario: usuario2 .
+"instanciación de prueba"
+|pedro diego juan t1 t2|
+pedro:=self agregarUsuarioConNombre: 'pedro@cuoora.com' yContraseña:'pedro@cuoora.com'.
+diego:=self agregarUsuarioConNombre: 'diego@cuoora.com' yContraseña:'diego@cuoora.com'.
+juan:=self agregarUsuarioConNombre: 'juan@cuoora.com' yContraseña:'juan@cuoora.com'.
+juan seguirUsuario: diego.
+pedro seguirUsuario: juan.
+t1:=self agregarTopicoConNombre: 'OO1' yDescripcion: 'Test de unidad'.
+(t1 agregarPregunta:'¿Para qué sirve el método SetUp?'  descripcion:''  usuario: pedro)agregarRespuesta: 'Respuesta de Diego: Sirve para instanciar los objetos que son
+evaluados por el test en un único método y que se ejecute
+siempre antes de cada test.' creador: diego.
+t2:=self agregarTopicoConNombre: 'OO1' yDescripcion: 'Smalltalk'.
+(t2 agregarPregunta: '¿Qué significa #messageNotUnderstood?' descripcion:''  usuario:diego )agregarRespuesta: 'Significa que el objeto que recibió el mensaje
+no encontró ningún método para ejecutar en respuesta.' creador:pedro 
 
 ]
 
