@@ -15,6 +15,20 @@ Topico class >> nombreDeTopico:topico descripcion:descrip [
 ]
 
 { #category : #'as yet unclassified' }
+Topico >> agregarPregunta: nuevaPregunta [
+"agrega una pregunta a la coleccion de preguntas del topico"
+"	| nuevaPregunta |
+	nuevaPregunta := Pregunta
+		newConTitulo: unTitulo
+		descripcion: unaDescripcion
+		yUsuario: unUsuario.
+	preguntas add: nuevaPregunta.
+	^nuevaPregunta"
+preguntas add: nuevaPregunta.
+
+]
+
+{ #category : #'as yet unclassified' }
 Topico >> agregarPregunta: unTitulo descripcion: unaDescripcion usuario: unUsuario [
 "agrega una pregunta a la coleccion de preguntas del topico"
 	| nuevaPregunta |

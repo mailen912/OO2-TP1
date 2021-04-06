@@ -83,20 +83,29 @@ topicos := OrderedCollection new.
 { #category : #initialization }
 CuOOra >> initializeConDatos [
 "instanciación de prueba"
-|pedro diego juan t1 t2|
+|pedro diego juan t1 t2 p1 p2 t3 t4|
 pedro:=self agregarUsuarioConNombre: 'pedro@cuoora.com' yContraseña:'pedro@cuoora.com'.
 diego:=self agregarUsuarioConNombre: 'diego@cuoora.com' yContraseña:'diego@cuoora.com'.
 juan:=self agregarUsuarioConNombre: 'juan@cuoora.com' yContraseña:'juan@cuoora.com'.
 juan seguirUsuario: diego.
 pedro seguirUsuario: juan.
-t1:=self agregarTopicoConNombre: 'OO1' yDescripcion: 'Test de unidad'.
-(t1 agregarPregunta:'¿Para qué sirve el método SetUp?'  descripcion:''  usuario: pedro)agregarRespuesta: 'Respuesta de Diego: Sirve para instanciar los objetos que son
+t1:=self agregarTopicoConNombre: 'OO1' yDescripcion: ''.
+t2:=self agregarTopicoConNombre: 'OO1' yDescripcion: ''.
+t3:=self agregarTopicoConNombre: 'Test de unidad' yDescripcion:''.
+t4:=self agregarTopicoConNombre: 'Smalltalk' yDescripcion:''.
+
+p1:=Pregunta newConTitulo: '¿Para qué sirve el método SetUp?'  descripcion:''  yUsuario: pedro.
+p1 agregarRespuesta: 'Respuesta de Diego: Sirve para instanciar los objetos que son
 evaluados por el test en un único método y que se ejecute
 siempre antes de cada test.' creador: diego.
-t2:=self agregarTopicoConNombre: 'OO1' yDescripcion: 'Smalltalk'.
-(t2 agregarPregunta: '¿Qué significa #messageNotUnderstood?' descripcion:''  usuario:diego )agregarRespuesta: 'Significa que el objeto que recibió el mensaje
-no encontró ningún método para ejecutar en respuesta.' creador:pedro 
+p2:=Pregunta newConTitulo:  '¿Qué significa #messageNotUnderstood?' descripcion:''  yUsuario:diego.
+p2 agregarRespuesta: 'Significa que el objeto que recibió el mensaje
+no encontró ningún método para ejecutar en respuesta.' creador:pedro .
 
+t1 agregarPregunta: p1.
+t2 agregarPregunta: p2.
+t3 agregarPregunta: p1.
+t4 agregarPregunta: p2.
 ]
 
 { #category : #'as yet unclassified' }
@@ -119,10 +128,10 @@ CuOOra >> obtenerPreguntasRealizadasPor:unUsuario [
 CuOOra >> obtenerPreguntasRelevantes:usuario [
 "Obtener preguntas relevantes para un usuario determinado: Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
 |todas|
-todas:=Set new.
+todas:=OrderedCollection new.
 todas:=usuario siguiendo flatCollect: [ :user| self obtenerPreguntasRealizadasPor: user ].
 todas addAll: usuario obtenerPreguntasDeTopicosDeInteres .
-^todas
+^(todas asSet).
 ]
 
 { #category : #'as yet unclassified' }

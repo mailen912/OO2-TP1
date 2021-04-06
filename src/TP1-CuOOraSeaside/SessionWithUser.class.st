@@ -1,3 +1,8 @@
+"
+| application |
+application := WAAdmin register: LoginComponent asApplicationAt: 'InicioSesion'.
+application sessionClass: SessionWithUser.
+"
 Class {
 	#name : #SessionWithUser,
 	#superclass : #WASession,
