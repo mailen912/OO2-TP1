@@ -18,7 +18,7 @@ CuOOra class >> clearInstance [
 
 { #category : #'instance creation' }
 CuOOra class >> soleInstance [
-	^ soleInstance ifNil: [ soleInstance := self new ]
+	^ soleInstance ifNil: [ soleInstance := self new initializeConDatos ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -77,21 +77,29 @@ CuOOra >> initialize [
 usuarios:= OrderedCollection new.
 
 topicos := OrderedCollection new.
-self initializeConDatos.
+
 ]
 
 { #category : #initialization }
 CuOOra >> initializeConDatos [
 "Para probar avance en la interfaz"
-|usuario1 topicoInteres usuario2 topicoComun|
-usuario2:=self agregarUsuarioConNombre: 'Lujan' yContraseña:  '3333'.
-topicoComun:= self agregarTopicoConNombre: 'Java' yDescripcion:'Orientado a Objetos' .
-topicoInteres := self agregarTopicoConNombre: 'Seside' yDescripcion:'Interfaz web' .
-topicoInteres agregarPregunta: 'Caja' descripcion:'caja negra o caja blanca?'  usuario:usuario2.
-topicoComun agregarPregunta: 'Orientacion a objetos' descripcion:'es puro?'  usuario: usuario2.
+|usuario1 usuario2 t1 t2 t3|
 usuario1:=self agregarUsuarioConNombre: 'Mailen' yContraseña:  '1234'.
-usuario1 registrarTopicoDeInteres: topicoInteres .
+usuario2:=self agregarUsuarioConNombre: 'Lujan' yContraseña:  '3333'.
+t2:=self agregarTopicoConNombre: 'Seaside' yDescripcion: 'Interfaz web'.
+t3:= self agregarTopicoConNombre: 'Smalltalk' yDescripcion: 'Orientado a objetos'.
+t3 agregarPregunta: '¿Que es una coleccion?' descripcion:'Tipos de colecciones'  usuario:usuario1 .
+self agregarPreguntaALosTopicos: self topicos  titulo: 'OO2' descripcion: '¿Como utilizar Seaside con Samlltalk?' usuario: usuario1.
+self agregarPreguntaALosTopicos: self topicos  titulo: 'Repositorios' descripcion: '¿Como utilizar Iceberg?' usuario: usuario2.
+t1:= self agregarTopicoConNombre: 'Java' yDescripcion: 'Orientado a Objetos' .
+t1 agregarPregunta:'Orientacion a objetos' descripcion:'es puro?'  usuario: usuario2.
+usuario1 registrarTopicoDeInteres: t1.
+usuario1 registrarTopicoDeInteres: t2.
+usuario1 registrarTopicoDeInteres: t3.
+usuario2 registrarTopicoDeInteres: t2.
+usuario2 registrarTopicoDeInteres: t3.
 usuario1 seguirUsuario: usuario2 .
+
 ]
 
 { #category : #'as yet unclassified' }
@@ -99,6 +107,7 @@ CuOOra >> listado:usuario [
 "devuelve el listado de las últimas 5 preguntas relevantes ordenadas según su fecha de creación. Por cada pregunta, se muestra su autor, cuántas respuestas tiene, y la cantidad de likes y dislikes
 "
 |preguntas|
+"self halt."
 preguntas:=(self obtenerPreguntasRelevantes: usuario) asSortedCollection:[:unaPreg :otraPreg | unaPreg fechaHora  > otraPreg fechaHora ]. 
 ^preguntas 
 ]

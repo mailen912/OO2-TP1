@@ -32,6 +32,11 @@ Pregunta >> cantidadRespuestas [
 ^(respuestas size)
 ]
 
+{ #category : #accessing }
+Pregunta >> descripcion [
+^descripcion 
+]
+
 { #category : #'as yet unclassified' }
 Pregunta >> eliminarRespuestas [
            "Elimina todas sus respuestas"
@@ -66,4 +71,9 @@ Pregunta >> obtenerRespuestasPor: unUsuario [
 Pregunta >> respuestas [
 	^ respuestas
 
+]
+
+{ #category : #accessing }
+Pregunta >> titulo [
+^titulo
 ]
