@@ -100,35 +100,30 @@ self assert: (cuoora obtenerPreguntasRealizadasPor: usuario)size equals:0.
 { #category : #tests }
 CuOOraTest >> testObtenerPreguntasRelevantes [
 "Obtener preguntas relevantes para un usuario determinado: Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
-|topico1 topico2 topico3 usuario usuario1 usuario2 usuario3 usuario4 usuario5 usuario6 preg mismasPreg|
-usuario := Usuario nombreDeUsuario: 'cero' contraseña: 'hhhhh32'.
-usuario1 := Usuario nombreDeUsuario: 'uno' contraseña: '232da'.
-usuario2 := Usuario nombreDeUsuario: 'dos' contraseña: '23wa'.
-usuario3 := Usuario nombreDeUsuario: 'tres' contraseña: '237a'.
-usuario4 := Usuario nombreDeUsuario: 'cuatro' contraseña: '2532da'.
-usuario5 := Usuario nombreDeUsuario: 'cinco' contraseña: '2532da'.
-usuario6 := Usuario nombreDeUsuario: 'seis' contraseña: '23bj'.
-
-topico1:=cuoora agregarTopicoConNombre:'SMALLTALK'  yDescripcion:  'OO2'.
-topico2:=cuoora agregarTopicoConNombre:'JAVA'  yDescripcion: 'Taller de programacion'.
-topico3:=cuoora agregarTopicoConNombre:'Python'  yDescripcion: 'multiparadigma'.
-mismasPreg:=OrderedCollection new.
-mismasPreg add:topico1 ;add:topico2;add:topico3 .
-cuoora agregarPreguntaALosTopicos: mismasPreg  titulo:'xxxx'  descripcion:'Lenguajes de programacion'  usuario: usuario6.
-preg:=(topico1 agregarPregunta: 'Nueva' descripcion: 'cual?' usuario: usuario1).
-topico1 agregarPregunta: 'Vieja' descripcion: 'por que?' usuario: usuario2.
-topico2 agregarPregunta: 'Nueva' descripcion: 'cual?' usuario: usuario3.
-topico2 agregarPregunta: 'Vieja' descripcion: 'por que?' usuario: usuario4.
-topico3 agregarPregunta: 'Actual' descripcion: 'Es facil?' usuario: usuario5.
-topico3 agregarPregunta: 'Version' descripcion: 'Cual es la version actual?' usuario: usuario6.
+|topico1 p2 p3 topico2  usuario p1  NoSeguido Seguido|
+NoSeguido:=Usuario nombreDeUsuario: 'E' contraseña:'1212'.
+Seguido:= Usuario nombreDeUsuario: 'si' contraseña:'323'.
+p1:=Pregunta newConTitulo: 'titulo' descripcion:'??'  yUsuario: NoSeguido .
+topico1:=cuoora agregarTopicoConNombre: 'T1' yDescripcion:'t1'.
+topico1 agregarPregunta: p1.
+usuario :=cuoora agregarUsuarioConNombre: 'Usuario' yContraseña:'contra'.
+self assert: ((cuoora obtenerPreguntasRelevantes: usuario)isEmpty ) equals: true.
 usuario registrarTopicoDeInteres: topico1 .
-usuario registrarTopicoDeInteres: topico2 .
-usuario seguirUsuario: usuario5 .
-usuario seguirUsuario: usuario6 .
-"self halt."
-self assert:((cuoora obtenerPreguntasRelevantes: usuario)size=7) equals: true.
-self assert:((cuoora obtenerPreguntasRelevantes: usuario) includes: preg) equals: true.
+usuario seguirUsuario: Seguido.
+self assert: ((cuoora obtenerPreguntasRelevantes: usuario)size=1) equals: true.
+p2:=Pregunta newConTitulo: 'preg2' descripcion:'??'  yUsuario: NoSeguido .
+p3:=Pregunta newConTitulo: 'preg3' descripcion:'??'  yUsuario: Seguido .
+ topico2:=cuoora agregarTopicoConNombre: 'T2' yDescripcion:'t2'.
+topico2 agregarPregunta: p2.
+self assert: ((cuoora obtenerPreguntasRelevantes: usuario)size=1) equals: true.
+topico2 agregarPregunta: p3.
+self assert: ((cuoora obtenerPreguntasRelevantes: usuario)size=2) equals: true.
+topico1 agregarPregunta: p3.
+self assert: ((cuoora obtenerPreguntasRelevantes: usuario)size=2) equals: true.
 
+ self assert: ((cuoora obtenerPreguntasRelevantes: usuario)includes:  p1) equals: true.
+ self assert: ((cuoora obtenerPreguntasRelevantes: usuario)includes:  p3) equals: true.
+ self assert: ((cuoora obtenerPreguntasRelevantes: usuario)includes: p2) equals: false.
 ]
 
 { #category : #tests }

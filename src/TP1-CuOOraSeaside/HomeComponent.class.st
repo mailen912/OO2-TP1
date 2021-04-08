@@ -1,3 +1,8 @@
+"
+| application |
+application := WAAdmin register: LoginComponent asApplicationAt: 'InicioSesion'.
+application sessionClass: SessionWithUser.
+"
 Class {
 	#name : #HomeComponent,
 	#superclass : #WAComponent,
@@ -28,11 +33,11 @@ HomeComponent >> renderPostsOn: aCanvas [
 		with: 'Ultimas Preguntas'.
 	aCanvas
 		unorderedList: [ ((CuOOra soleInstance )  listado: self session usuario)
-				do: [ :preg | aCanvas listItem: preg titulo.
+				do: [ :preg | aCanvas anchor callback: [ self call:(QuestionInformationComponent dePregunta: preg)] ;with: preg titulo.
+					aCanvas text:'Topicos:'.
+					aCanvas unorderedList:[ ((CuOOra soleInstance ) topicosPoseenPregunta: preg)do:[:topico| aCanvas text: topico nombreTopico,','. ] ]  .
 					aCanvas paragraph: [ aCanvas text:'Realizada por '.
 					aCanvas strong with:(preg creador nombreUsuario).aCanvas text:' | ' ,(preg respuestas size)asString ,' repuestas'.
-					aCanvas paragraph:[aCanvas text: (preg cantidadDeLikes) asString, ' likes   |   ', (preg cantidadDeDislikes) asString,' dislikes']]]].
-		"aCanvas
-		unorderedList: [ ((CuOOra soleInstance ) obtenerPreguntasRealizadasPor: (self session) )
-				do: [ :preg | aCanvas listItem: preg titulo.]]. esto es para probar que se guarde la pregunta que hace el usuario"
+					aCanvas paragraph:[aCanvas text: (preg cantidadDeLikes) asString, ' likes   |   ', (preg cantidadDeDislikes) asString,' dislikes']]].
+]
 ]

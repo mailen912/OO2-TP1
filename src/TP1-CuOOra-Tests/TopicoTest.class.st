@@ -82,3 +82,14 @@ TopicoTest >> testObtenerRespuestasRealizadasPor [
 	self assert: respuestasPorUsuario first texto equals: 'Respuesta 1'
 
 ]
+
+{ #category : #test }
+TopicoTest >> testTengoPregunta [
+|p1 p2 |
+
+p1:= Pregunta newConTitulo: 'EE' descripcion:'11'  yUsuario: usuario.
+p2:=Pregunta newConTitulo: 'NO' descripcion:'12'  yUsuario: usuario.
+topico1 agregarPregunta: p1.
+	self assert: (topico1 tengoPregunta: p1)equals:true.
+		self assert: (topico1 tengoPregunta: p2)equals:false.
+]

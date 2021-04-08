@@ -149,6 +149,12 @@ CuOOra >> topicos [
 ]
 
 { #category : #'as yet unclassified' }
+CuOOra >> topicosPoseenPregunta:pregunta [
+"devuelve la coleccion de topicos que posee la pregunta recibida por parametro"
+^(topicos select: [:topico | topico tengoPregunta: pregunta])
+]
+
+{ #category : #'as yet unclassified' }
 CuOOra >> usuarioConNombreDeUsuario: unNombre yContraseña: unaContra [
 	"Retorna el usuario si esta registrado en el sistema caso contrario retorna nil"
 

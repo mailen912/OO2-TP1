@@ -77,6 +77,11 @@ descripcion:=descrip .
 preguntas :=OrderedCollection new.
 ]
 
+{ #category : #accessing }
+Topico >> nombreTopico [
+^nombreTopico 
+]
+
 { #category : #'as yet unclassified' }
 Topico >> obtenerPreguntasDeOtrosUsuarios: unUsuario [
 	"Retorna una coleccion de preguntas que no realizo el usuario pasado por parametro"
@@ -107,4 +112,10 @@ Topico >> obtenerTodasLasPreguntas [
 	"Retornar todas las preguntas que se realizaron relacionadas a ese tópico"
 	^ preguntas
 
+]
+
+{ #category : #'as yet unclassified' }
+Topico >> tengoPregunta:pregunta [
+"devuelve un boolean indicando si tiene o no la pregunta que recibe como parametro"
+^preguntas includes: pregunta .
 ]
