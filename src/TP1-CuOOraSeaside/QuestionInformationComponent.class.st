@@ -1,6 +1,6 @@
 Class {
 	#name : #QuestionInformationComponent,
-	#superclass : #WAComponent,
+	#superclass : #CuOOraComponent,
 	#instVars : [
 		'pregunta'
 	],
@@ -12,12 +12,6 @@ QuestionInformationComponent class >> dePregunta:pregunta [
 ^self new initializeConPregunta:pregunta 
 ]
 
-{ #category : #'as yet unclassified' }
-QuestionInformationComponent >> getOut [
-	self session unregister.
-	self requestContext redirectTo: self application url
-]
-
 { #category : #initialization }
 QuestionInformationComponent >> initializeConPregunta:preg [ 
 pregunta :=preg.
@@ -27,10 +21,9 @@ pregunta :=preg.
 QuestionInformationComponent >> renderAnswerOn:aCanvas [ 
 aCanvas horizontalRule .
 aCanvas unorderedList: [ pregunta obtenerRespuestasOrdenadasPorPuntaje
-				do: [ :resp | aCanvas text:'Respuesta de '.
-					aCanvas strong with:( resp creador nombreUsuario).
+				do: [ :resp | self mostrarQuienRealizoLaPregunta: aCanvas  preg:resp  .
 				aCanvas paragraph: [ aCanvas text:resp texto.
-				aCanvas paragraph:[aCanvas text: (pregunta cantidadDeLikes) asString, ' likes   |   ', (pregunta cantidadDeDislikes) asString,' dislikes']]]].
+				self mostrarLikesYDislikes: aCanvas preg:pregunta  ]]].
 	aCanvas horizontalRule .
 	aCanvas text:'No hay mas respuestas'
 
@@ -50,8 +43,8 @@ QuestionInformationComponent >> renderPostsOn: aCanvas [
 aCanvas text: pregunta titulo.
 aCanvas text:'Topicos:'.
 aCanvas unorderedList:[ ((CuOOra soleInstance ) topicosPoseenPregunta: pregunta)do:[:topico| aCanvas text: topico nombreTopico,',' ] ]  .
-					aCanvas paragraph: [ aCanvas text:'Realizada por '.
-					aCanvas strong with:(pregunta creador nombreUsuario).aCanvas text:' | ' ,(pregunta respuestas size)asString ,' repuestas'.
-					aCanvas paragraph:[aCanvas text: (pregunta cantidadDeLikes) asString, ' likes   |   ', (pregunta cantidadDeDislikes) asString,' dislikes']].
+					aCanvas paragraph: [ self mostrarQuienRealizoLaPregunta: aCanvas preg:pregunta.
+					self mostrarCuantasRespuestasTiene:aCanvas preg:pregunta .
+					self mostrarLikesYDislikes: aCanvas preg:pregunta ].
 self renderAnswerOn:aCanvas.
 ]

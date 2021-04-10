@@ -1,6 +1,6 @@
 Class {
 	#name : #AskQuestionsComponent,
-	#superclass : #WAComponent,
+	#superclass : #CuOOraComponent,
 	#instVars : [
 		'titulo',
 		'desarrollo',
@@ -27,17 +27,17 @@ desarrollo:=unD
 	
 ]
 
-{ #category : #'as yet unclassified' }
-AskQuestionsComponent >> getOut [
-	self session unregister.
-	self requestContext redirectTo: self application url
+{ #category : #rendering }
+AskQuestionsComponent >> initialize [ 
+super initialize.
+"topicos:=OrderedCollection new."
 ]
 
 { #category : #'as yet unclassified' }
 AskQuestionsComponent >> preguntar [
 |preg|
-preg:=Pregunta newConTitulo: titulo descripcion:desarrollo  yUsuario:(self session ) .
-((CuOOra soleInstance)agregarTopicoConNombre: topicos  yDescripcion: '')agregarPregunta: preg . 
+preg:=Pregunta newConTitulo: titulo descripcion:desarrollo  yUsuario:(self session usuario) .
+(CuOOra soleInstance)agregarPreguntaALosTopicos: topicos preg:preg  . 
 self answer.
 ]
 
@@ -48,7 +48,12 @@ AskQuestionsComponent >> renderAskQuestion:aCanvas [.
 	aCanvas label: 'Desarrollo';break.
 	(aCanvas textArea on: #desarrollo of: self) columns: 80; rows: 5.
 	aCanvas break;break;label: 'Topicos'.
-	aCanvas paragraph: [ aCanvas textInput on: #topicos of: self ].
+	aCanvas multiSelect
+   labels: #nombreTopico; 
+   list: CuOOra soleInstance  topicos;
+   selected: CuOOra soleInstance  topicos ;
+   callback: [ :value | topicos:=value ].
+   "aCanvas paragraph: [ aCanvas textInput on: #topicos of: self ]."
    aCanvas submitButton callback: [ self cancelar ];with: 'Cancelar' .
    aCanvas submitButton callback: [ self preguntar ];with: 'Guardar' .
 	
@@ -86,6 +91,7 @@ AskQuestionsComponent >> topicos [
 
 { #category : #rendering }
 AskQuestionsComponent >> topicos:t [
-topicos:=t.
+"topicos:=t."
+topicos add:t.
 	
 ]
