@@ -22,6 +22,13 @@ CuOOra class >> soleInstance [
 ]
 
 { #category : #'as yet unclassified' }
+CuOOra >> agregarPreguntaALosTopicos: topicosRelacionada preg:preg [
+"A cada topico le agregar la pregunta relacionada"
+	topicosRelacionada do:[	:each | each agregarPregunta: preg]
+
+]
+
+{ #category : #'as yet unclassified' }
 CuOOra >> agregarPreguntaALosTopicos: topicosRelacionada titulo: unTitulo descripcion: unaDescripcion usuario: unUsuario [
 "A cada topico le agregar la pregunta relacionada"
 	topicosRelacionada do:[	:each | each agregarPregunta: unTitulo
@@ -121,7 +128,7 @@ preguntas:=(self obtenerPreguntasRelevantes: usuario) asSortedCollection:[:unaPr
 { #category : #'as yet unclassified' }
 CuOOra >> obtenerPreguntasRealizadasPor:unUsuario [
 "Busca entre todos los topicos las preguntas realizadas por el usuario pasado por parametro"
-^topicos flatCollect: [ :topico | topico obtenerPreguntasRealizadasPor: unUsuario  ]
+^(topicos flatCollect: [ :topico | topico obtenerPreguntasRealizadasPor: unUsuario  ])asSet.
 ]
 
 { #category : #'as yet unclassified' }

@@ -56,7 +56,7 @@ topicosDeInteres add: topico
 
 { #category : #'as yet unclassified' }
 Usuario >> seguirUsuario: unUsuario [
-	siguiendo add: unUsuario
+siguiendo detect: [ :u | u = unUsuario  ] ifNone: [siguiendo add: unUsuario]
 
 ]
 
