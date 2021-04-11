@@ -44,12 +44,27 @@ aCanvas big:[aCanvas strong with: 'CuOOra'];space.
 ]
 
 { #category : #rendering }
+QuestionInformationComponent >> renderDisikeButton:aCanvas post:post [
+aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
+	self call:(QuestionInformationComponent dePregunta: pregunta)] ;with:'dislike'
+]
+
+{ #category : #rendering }
+QuestionInformationComponent >> renderLikeButton:aCanvas post:post [
+aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
+	self call:(QuestionInformationComponent dePregunta: pregunta)] ;with:'like'
+]
+
+{ #category : #rendering }
 QuestionInformationComponent >> renderPostsOn: aCanvas [
 aCanvas text: pregunta titulo.
 aCanvas text:'Topicos:'.
 aCanvas unorderedList:[ ((CuOOra soleInstance ) topicosPoseenPregunta: pregunta)do:[:topico| aCanvas text: topico nombreTopico,',' ] ]  .
 					aCanvas paragraph: [ self mostrarQuienRealizoLaPregunta: aCanvas preg:pregunta.
 					self mostrarCuantasRespuestasTiene:aCanvas preg:pregunta .
-					self mostrarLikesYDislikes: aCanvas post:pregunta ].
+					self mostrarLikesYDislikes: aCanvas post:pregunta.
+					self renderLikeButton: aCanvas  post:pregunta.
+				aCanvas space.
+				self renderDisikeButton: aCanvas  post:pregunta.  ].
 self renderAnswerOn:aCanvas.
 ]

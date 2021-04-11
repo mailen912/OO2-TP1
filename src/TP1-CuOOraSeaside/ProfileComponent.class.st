@@ -23,13 +23,26 @@ ProfileComponent >> renderContentOn: aCanvas [
 	aCanvas space;text:self session usuario nombreUsuario.
 	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
 	aCanvas horizontalRule .
-	aCanvas paragraph: [ aCanvas anchor callback: [ self answer ];with: 'Volver al Home' ].
+	aCanvas paragraph: [ aCanvas anchor callback: [ self call:(HomeComponent new) ];with: 'Volver al Home' ].
 	self renderPostOn:aCanvas .
+]
+
+{ #category : #rendering }
+ProfileComponent >> renderDisikeButton:aCanvas post:post [
+aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
+	self call:(ProfileComponent conUsuario: usuario)] ;with:'dislike'
+]
+
+{ #category : #rendering }
+ProfileComponent >> renderLikeButton:aCanvas post:post [
+aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
+	self call:(ProfileComponent conUsuario: usuario)] ;with:'like'
 ]
 
 { #category : #'as yet unclassified' }
 ProfileComponent >> renderPostOn:aCanvas [
-	aCanvas heading level: 2; with: 'Preguntas de ',usuario nombreUsuario.self seguirUsuario:aCanvas.
+	aCanvas heading level: 2; with: 'Preguntas de ',usuario nombreUsuario.
+((self session usuario)=usuario)ifFalse:[self seguirUsuario:aCanvas].
 	aCanvas
 		unorderedList: [ ((CuOOra soleInstance )  obtenerPreguntasRealizadasPor: usuario )
 				do: [ :preg | aCanvas text:preg titulo.
@@ -37,6 +50,9 @@ ProfileComponent >> renderPostOn:aCanvas [
 					self mostrarQuienRealizoLaPregunta:aCanvas preg:preg.
 					self mostrarCuantasRespuestasTiene: aCanvas preg:preg. 
 					self mostrarLikesYDislikes:aCanvas post:preg.
+					self renderLikeButton: aCanvas  post:preg.
+					aCanvas space.
+					 self renderDisikeButton: aCanvas  post:preg.
 					aCanvas horizontalRule.]].
 			
 ]
