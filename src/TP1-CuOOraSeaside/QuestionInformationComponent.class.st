@@ -23,9 +23,11 @@ aCanvas horizontalRule .
 aCanvas unorderedList: [ pregunta obtenerRespuestasOrdenadasPorPuntaje
 				do: [ :resp | self mostrarQuienRealizoLaPregunta: aCanvas  preg:resp  .
 				aCanvas paragraph: [ aCanvas text:resp texto.
-				self mostrarLikesYDislikes: aCanvas preg:pregunta  ]]].
+				self mostrarLikesYDislikes: aCanvas post:resp.
+				  aCanvas horizontalRule .]]].
 	aCanvas horizontalRule .
-	aCanvas text:'No hay mas respuestas'
+	aCanvas text:'No hay mas respuestas'.
+	aCanvas paragraph: [ aCanvas anchor callback: [ self call:(AnsweringComponent dePregunta: pregunta)  ];with: 'Hacer una nueva respuesta' ].
 
 ]
 
@@ -45,6 +47,6 @@ aCanvas text:'Topicos:'.
 aCanvas unorderedList:[ ((CuOOra soleInstance ) topicosPoseenPregunta: pregunta)do:[:topico| aCanvas text: topico nombreTopico,',' ] ]  .
 					aCanvas paragraph: [ self mostrarQuienRealizoLaPregunta: aCanvas preg:pregunta.
 					self mostrarCuantasRespuestasTiene:aCanvas preg:pregunta .
-					self mostrarLikesYDislikes: aCanvas preg:pregunta ].
+					self mostrarLikesYDislikes: aCanvas post:pregunta ].
 self renderAnswerOn:aCanvas.
 ]

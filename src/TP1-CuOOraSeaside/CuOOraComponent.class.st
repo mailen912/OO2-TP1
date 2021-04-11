@@ -16,8 +16,8 @@ aCanvas text:' | ' ,(pregunta respuestas size)asString ,' repuestas'
 ]
 
 { #category : #'as yet unclassified' }
-CuOOraComponent >> mostrarLikesYDislikes: aCanvas preg:preg [
-aCanvas paragraph:[aCanvas text: (preg cantidadDeLikes) asString, ' likes   |   ', (preg cantidadDeDislikes) asString,' dislikes'] 
+CuOOraComponent >> mostrarLikesYDislikes: aCanvas post:post [
+aCanvas paragraph:[aCanvas text: (post cantidadDeLikes) asString, ' likes   |   ', (post cantidadDeDislikes) asString,' dislikes'] 
 ]
 
 { #category : #'as yet unclassified' }
