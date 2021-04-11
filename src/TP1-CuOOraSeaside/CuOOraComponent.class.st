@@ -37,3 +37,15 @@ aCanvas text:'Topicos:'.
 CuOOraComponent >> renderContentOn: aCanvas [
 self subclassResponsibility 
 ]
+
+{ #category : #rendering }
+CuOOraComponent >> renderDisikeButton:aCanvas post:post [
+aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
+	self call:(self class new)] ;with:'dislike'
+]
+
+{ #category : #'as yet unclassified' }
+CuOOraComponent >> renderLikeButton:aCanvas post:post [
+aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
+	self call:(self class new)] ;with:'like'
+]

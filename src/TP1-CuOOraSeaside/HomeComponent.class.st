@@ -30,6 +30,8 @@ HomeComponent >> renderPostsOn: aCanvas [
 					self mostrarTopicos:aCanvas preg:preg  .
 					self mostrarQuienRealizoLaPregunta:aCanvas preg:preg.
 					self mostrarCuantasRespuestasTiene: aCanvas preg:preg. 
-					self mostrarLikesYDislikes:aCanvas post:preg]].
-
+					self mostrarLikesYDislikes:aCanvas post:preg.
+				    (self renderLikeButton: aCanvas post:preg).
+				     aCanvas space.
+				    self  renderDisikeButton:aCanvas post:preg ]].
 ]

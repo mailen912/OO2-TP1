@@ -24,6 +24,9 @@ aCanvas unorderedList: [ pregunta obtenerRespuestasOrdenadasPorPuntaje
 				do: [ :resp | self mostrarQuienRealizoLaPregunta: aCanvas  preg:resp  .
 				aCanvas paragraph: [ aCanvas text:resp texto.
 				self mostrarLikesYDislikes: aCanvas post:resp.
+				self renderLikeButton: aCanvas  post:resp.
+				aCanvas space.
+				self renderDisikeButton: aCanvas  post:resp.  
 				  aCanvas horizontalRule .]]].
 	aCanvas horizontalRule .
 	aCanvas text:'No hay mas respuestas'.

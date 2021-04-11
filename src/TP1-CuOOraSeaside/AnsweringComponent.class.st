@@ -29,11 +29,6 @@ desarrollo:=desa
 ]
 
 { #category : #initialization }
-AnsweringComponent >> initialize [ 
-super initialize.
-]
-
-{ #category : #initialization }
 AnsweringComponent >> initializeConPregunta:preg [
 super initialize.
 pregunta :=preg
