@@ -37,7 +37,7 @@ Post >> fechaHora [
 ^fechaHora 
 ]
 
-{ #category : #accessing }
+{ #category : #public }
 Post >> haceDislikeUnUsuario: usuariox [
 	"puede hacer uno solo(no debe estar en la coleccion dislikes) y
  si antes hizo like (si esta en likes) lo debo eliminar"
@@ -52,7 +52,7 @@ Post >> haceDislikeUnUsuario: usuariox [
 			reaccion ifNotNil: [ likes remove: reaccion ] ]
 ]
 
-{ #category : #accessing }
+{ #category : #public }
 Post >> haceLikeUnUsuario: usuariox [
 	"puede hacer un solo(no debe estar en la coleccion like)
  no puede hacerlo si ya hizo dislike(si esta en dislike lo debo eliminar"
@@ -76,13 +76,13 @@ Post >> initializeConCreador: usuario [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Post >> puntaje [
 "devuelve el puntaje  de la respuesta, el cual esta dado por la diferencia entre likes y dislikes"
 ^(self cantidadDeLikes) -(self cantidadDeDislikes ) 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Post >> yoLaRealize: unUsuario [
 	^ creador = unUsuario
 

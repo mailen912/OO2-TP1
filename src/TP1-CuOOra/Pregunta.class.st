@@ -17,7 +17,7 @@ Pregunta class >> newConTitulo: unTitulo descripcion: unaDescripcion yUsuario: u
 		yUsuario: unUsuario
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Pregunta >> agregarRespuesta: texto creador: unUsuario [
 	| nuevaRespuesta |
 	nuevaRespuesta := Respuesta conTexto: texto  yCreador:unUsuario.
@@ -27,7 +27,7 @@ Pregunta >> agregarRespuesta: texto creador: unUsuario [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 Pregunta >> cantidadRespuestas [
 ^(respuestas size)
 ]
@@ -37,7 +37,7 @@ Pregunta >> descripcion [
 ^descripcion 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Pregunta >> eliminarRespuestas [
            "Elimina todas sus respuestas"
 	respuestas removeAll
@@ -53,13 +53,13 @@ Pregunta >> initializeConTitulo: unTitulo yDescripcion: unaDescripcion yUsuario:
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Pregunta >> obtenerRespuestasOrdenadasPorPuntaje [
 "se retornan todas las respuestas ordenadas de mayor a menor por cantidad mayor puntaje, el que está dado por la diferencia de likes y dislikes. "
 ^respuestas  asSortedCollection: [:unaRta :otraRta | unaRta puntaje > otraRta puntaje]. 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Pregunta >> obtenerRespuestasPor: unUsuario [
            "Restorna una coleccion de respuestas en donde el creador coincide con el parametro "
 	^ respuestas

@@ -16,11 +16,6 @@ Usuario class >> nombreDeUsuario:nombre contraseña: password [
 ^self new nombreDeUsuario: nombre contraseña:password . 
 ]
 
-{ #category : #'as yet unclassified' }
-Usuario >> cantidadTopicosDeInteres [
-^topicosDeInteres size
-]
-
 { #category : #accessing }
 Usuario >> contraseña [ 
 ^contraseña 
@@ -42,20 +37,21 @@ Usuario >> nombreUsuario [
 ^nombreUsuario 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Usuario >> obtenerPreguntasDeTopicosDeInteres [
 "Devuelve una coleccion de todas las preguntas de todos los topicos de interes del usuario"
 ^topicosDeInteres flatCollect: [ :topi|topi obtenerTodasLasPreguntas ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Usuario >> registrarTopicoDeInteres:topico [ 
-"se agrega el topico a la coleccion de topicos de interes del usuario"
-topicosDeInteres add: topico 
+"Se agrega el topico a la coleccion de topicos de interes del usuario"
+topicosDeInteres detect: [ :t | t = topico ] ifNone: [topicosDeInteres add: topico ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Usuario >> seguirUsuario: unUsuario [
+"Agrega a su coleccion de usuarios que sigue,el usuario que llega por parametro, en caso de no seguirlo"
 siguiendo detect: [ :u | u = unUsuario  ] ifNone: [siguiendo add: unUsuario]
 
 ]
@@ -64,4 +60,9 @@ siguiendo detect: [ :u | u = unUsuario  ] ifNone: [siguiendo add: unUsuario]
 Usuario >> siguiendo [
 "devuelve una coleccion de todos los usuarios a los que sigue"
 ^siguiendo 
+]
+
+{ #category : #accessing }
+Usuario >> topicosDeInteres [
+^topicosDeInteres 
 ]

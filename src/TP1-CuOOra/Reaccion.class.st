@@ -20,7 +20,7 @@ usuario :=usuariox.
 fechaYHora :=DateAndTime now
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 Reaccion >> perteneceAlUsuario: usuariox [ 
 "verifica si el usuario que le llega como parametro es el mismo que tiene guardado"
 ^(usuario = usuariox)

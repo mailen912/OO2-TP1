@@ -6,7 +6,8 @@ Class {
 	#superclass : #TestCase,
 	#instVars : [
 		'topico1',
-		'usuario'
+		'usuario',
+		'pregunta'
 	],
 	#category : #'TP1-CuOOra-Tests'
 }
@@ -14,72 +15,53 @@ Class {
 { #category : #running }
 TopicoTest >> setUp [
 	"Hooks that subclasses may override to define the fixture of test."
- topico1 := Topico
-		nombreDeTopico: 'Smalltalk'
-		descripcion: 'orientacion a objetos'.
-	usuario := Usuario nombreDeUsuario: 'usuario1' contraseña: 'clave123'
+   topico1 := Topico nombreDeTopico: 'Smalltalk' descripcion: 'orientacion a objetos'.
+	usuario := Usuario nombreDeUsuario: 'usuario1' contraseña: 'clave123'.
+	pregunta:=Pregunta newConTitulo: 'pregunta 1' descripcion:'descripcion 1'  yUsuario: usuario.
 
 ]
 
 { #category : #tests }
 TopicoTest >> testAgregarPregunta [
-	topico1
-		agregarPregunta: '¿Que es smalltalk?'
-		descripcion: 'descripcion 1'
-		usuario: usuario.
+
+   self assert: topico1 obtenerTodasLasPreguntas isEmpty equals:true.
+	topico1 agregarPregunta: pregunta.
 	self assert: topico1 obtenerTodasLasPreguntas size equals: 1
 
 ]
 
 { #category : #tests }
 TopicoTest >> testBorrarPregunta [
-	| usuario1 |
-	usuario1 := Usuario
-		nombreDeUsuario: 'Usuario 1'
-		contraseña: 'clave123'.
-	topico1
-		agregarPregunta: 'Pregunta 1'
-		descripcion: 'Descripcion 1'
-		usuario: usuario1.
+	
+	topico1 agregarPregunta: pregunta.
 	self assert: topico1 obtenerTodasLasPreguntas size equals: 1.
 	topico1 borrarPregunta: topico1 obtenerTodasLasPreguntas first.
 	self assert: topico1 obtenerTodasLasPreguntas size equals: 0
 
 ]
 
+{ #category : #test }
+TopicoTest >> testCalcularPuntaje [
+
+	
+]
+
 { #category : #tests }
 TopicoTest >> testObtenerPreguntasRealizadasPor [
-	topico1
-		agregarPregunta: '¿Que es smalltalk?'
-		descripcion: 'descripcion 1'
-		usuario: usuario.
-	topico1
-		agregarPregunta: 'Pregunta 2'
-		descripcion: 'descripcion 2'
-		usuario: usuario.
-	topico1
-		agregarPregunta: 'Pregunta 3'
-		descripcion: 'descripcion 3'
-		usuario: usuario.
-	self
-		assert: (topico1 obtenerPreguntasRealizadasPor: usuario) size
-		equals: 3
+   self assert: (topico1 obtenerPreguntasRealizadasPor: usuario) size equals: 0.
+	topico1 agregarPregunta: pregunta.
+	self assert: (topico1 obtenerPreguntasRealizadasPor: usuario) size equals: 1.
 ]
 
 { #category : #tests }
 TopicoTest >> testObtenerRespuestasRealizadasPor [
-		| respuestasPorUsuario |
-	topico1
-		agregarPregunta: '¿Que es smalltalk?'
-		descripcion: 'descripcion 1'
-		usuario: usuario.
+
+	topico1 agregarPregunta: pregunta.
 	topico1 obtenerTodasLasPreguntas first
 		agregarRespuesta: 'Respuesta 1' creador: usuario;
 		agregarRespuesta: 'Respuesta 2' creador: usuario.
-	respuestasPorUsuario := topico1
-		obtenerRespuestasRealizadasPor: usuario.
-	self assert: respuestasPorUsuario size equals: 2.
-	self assert: respuestasPorUsuario first texto equals: 'Respuesta 1'
+	self assert: (topico1 obtenerRespuestasRealizadasPor: usuario) size equals: 2.
+
 
 ]
 
@@ -90,6 +72,6 @@ TopicoTest >> testTengoPregunta [
 p1:= Pregunta newConTitulo: 'EE' descripcion:'11'  yUsuario: usuario.
 p2:=Pregunta newConTitulo: 'NO' descripcion:'12'  yUsuario: usuario.
 topico1 agregarPregunta: p1.
-	self assert: (topico1 tengoPregunta: p1)equals:true.
-		self assert: (topico1 tengoPregunta: p2)equals:false.
+self assert: (topico1 tengoPregunta: p1)equals:true.
+self assert: (topico1 tengoPregunta: p2)equals:false.
 ]
