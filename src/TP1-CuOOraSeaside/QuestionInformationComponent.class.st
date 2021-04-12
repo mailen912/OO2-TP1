@@ -37,7 +37,8 @@ aCanvas unorderedList: [ pregunta obtenerRespuestasOrdenadasPorPuntaje
 { #category : #rendering }
 QuestionInformationComponent >> renderContentOn:aCanvas [
 aCanvas big:[aCanvas strong with: 'CuOOra'];space.	
-	aCanvas space;text:self session usuario nombreUsuario.
+	aCanvas space.
+	aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .
 	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
 	aCanvas horizontalRule.
    self renderPostsOn: aCanvas.
@@ -58,8 +59,7 @@ aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
 { #category : #rendering }
 QuestionInformationComponent >> renderPostsOn: aCanvas [
 aCanvas text: pregunta titulo.
-aCanvas text:'Topicos:'.
-aCanvas unorderedList:[ ((CuOOra soleInstance ) topicosPoseenPregunta: pregunta)do:[:topico| aCanvas text: topico nombreTopico,',' ] ]  .
+aCanvas unorderedList:[ self mostrarTopicos: aCanvas post:pregunta ]  .
 					aCanvas paragraph: [ self mostrarQuienRealizoLaPregunta: aCanvas preg:pregunta.
 					self mostrarCuantasRespuestasTiene:aCanvas preg:pregunta .
 					self mostrarLikesYDislikes: aCanvas post:pregunta.

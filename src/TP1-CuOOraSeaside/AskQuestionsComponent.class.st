@@ -62,6 +62,7 @@ AskQuestionsComponent >> renderAskQuestion:aCanvas [.
 { #category : #rendering }
 AskQuestionsComponent >> renderContentOn: aCanvas [
 	aCanvas big:[aCanvas strong with: 'CuOOra'];space.	
+	aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .
 	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
 	aCanvas horizontalRule.
 	aCanvas heading level: 2;

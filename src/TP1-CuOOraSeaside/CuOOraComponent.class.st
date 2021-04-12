@@ -27,10 +27,10 @@ aCanvas paragraph: [ aCanvas text:'Realizada por '.aCanvas anchor callback: [ se
 ]
 
 { #category : #'as yet unclassified' }
-CuOOraComponent >> mostrarTopicos:aCanvas preg:preg [
+CuOOraComponent >> mostrarTopicos:aCanvas post:post [
 aCanvas break.
 aCanvas text:'Topicos:'.
-					aCanvas unorderedList:[ ((CuOOra soleInstance ) topicosPoseenPregunta: preg)do:[:topico| aCanvas text: topico nombreTopico,','. ] ]
+					aCanvas unorderedList:[ ((CuOOra soleInstance ) topicosPoseenPregunta: post)do:[:topico| aCanvas text: topico nombreTopico,','. ] ]
 ]
 
 { #category : #'as yet unclassified' }

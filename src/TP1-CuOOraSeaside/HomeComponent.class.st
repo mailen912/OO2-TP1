@@ -16,6 +16,7 @@ HomeComponent >> renderContentOn: aCanvas [
 	aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .
 	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
 	aCanvas horizontalRule.
+	aCanvas paragraph: [ aCanvas anchor callback: [ self call:AskQuestionsComponent new ];with: 'Hacer una nueva pregunta' ].
    self renderPostsOn: aCanvas.
 
 ]
@@ -34,12 +35,11 @@ aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
 
 { #category : #rendering }
 HomeComponent >> renderPostsOn: aCanvas [
-	aCanvas paragraph: [ aCanvas anchor callback: [ self call:AskQuestionsComponent new ];with: 'Hacer una nueva pregunta' ].
 	aCanvas heading level: 2; with: 'Ultimas Preguntas'.
 	aCanvas
 		unorderedList: [ ((CuOOra soleInstance )  listado: self session usuario)
 				do: [ :preg | aCanvas anchor callback: [ self call:(QuestionInformationComponent dePregunta: preg)] ;with: preg titulo.
-					self mostrarTopicos:aCanvas preg:preg  .
+					self mostrarTopicos:aCanvas post:preg  .
 					self mostrarQuienRealizoLaPregunta:aCanvas preg:preg.
 					self mostrarCuantasRespuestasTiene: aCanvas preg:preg. 
 					self mostrarLikesYDislikes:aCanvas post:preg.

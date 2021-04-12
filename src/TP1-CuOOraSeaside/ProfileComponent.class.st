@@ -20,7 +20,8 @@ usuario :=nombre.
 { #category : #'as yet unclassified' }
 ProfileComponent >> renderContentOn: aCanvas [
 	aCanvas big:[aCanvas strong with: 'CuOOra'].	
-	aCanvas space;text:self session usuario nombreUsuario.
+	aCanvas space.
+	aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .
 	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
 	aCanvas horizontalRule .
 	aCanvas paragraph: [ aCanvas anchor callback: [ self call:(HomeComponent new) ];with: 'Volver al Home' ].
@@ -46,7 +47,7 @@ ProfileComponent >> renderPostOn:aCanvas [
 	aCanvas
 		unorderedList: [ ((CuOOra soleInstance )  obtenerPreguntasRealizadasPor: usuario )
 				do: [ :preg | aCanvas text:preg titulo.
-					self mostrarTopicos:aCanvas preg:preg  .
+					self mostrarTopicos:aCanvas post:preg  .
 					self mostrarQuienRealizoLaPregunta:aCanvas preg:preg.
 					self mostrarCuantasRespuestasTiene: aCanvas preg:preg. 
 					self mostrarLikesYDislikes:aCanvas post:preg.
