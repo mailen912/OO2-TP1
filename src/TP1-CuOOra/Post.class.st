@@ -76,7 +76,7 @@ Post >> initializeConCreador: usuario [
 
 ]
 
-{ #category : #private }
+{ #category : #public }
 Post >> puntaje [
 "devuelve el puntaje  de la respuesta, el cual esta dado por la diferencia entre likes y dislikes"
 ^(self cantidadDeLikes) -(self cantidadDeDislikes ) 

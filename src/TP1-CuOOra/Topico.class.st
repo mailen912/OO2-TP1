@@ -30,7 +30,7 @@ Topico >> borrarPregunta: unaPregunta [
 
 ]
 
-{ #category : #private }
+{ #category : #public }
 Topico >> calcularPuntaje: unUsuario [
 	"Se indica un usuario, y se retorna un puntaje que se calcula en función de su actividad en la red social. Por cada pregunta realizada, suma 20 puntos, y por cada respuesta a una pregunta que realizó otro usuario, suma 50 puntos. Además, se suma puntaje determinado por la diferencia entre likes y dislikes de todas sus participaciones, que de tener mas dislikes que likes, puede ser negativo"
 	| susPreguntas preguntasDeOtros susRespuestas puntajePreguntas puntajeRespuestas |
@@ -89,7 +89,7 @@ Topico >> obtenerTodasLasPreguntas [
 
 ]
 
-{ #category : #private }
+{ #category : #public }
 Topico >> tengoPregunta:pregunta [
 "devuelve un boolean indicando si tiene o no la pregunta que recibe como parametro"
 ^preguntas includes: pregunta .

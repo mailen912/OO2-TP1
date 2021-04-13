@@ -21,23 +21,14 @@ CuOOra class >> soleInstance [
 	^ soleInstance ifNil: [ soleInstance := self new initializeConDatos ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> agregarPreguntaALosTopicos: topicosRelacionada preg:preg [
 "A cada topico le agregar la pregunta relacionada"
 	topicosRelacionada do:[	:each | each agregarPregunta: preg]
 
 ]
 
-{ #category : #'as yet unclassified' }
-CuOOra >> agregarPreguntaALosTopicos: topicosRelacionada titulo: unTitulo descripcion: unaDescripcion usuario: unUsuario [
-"A cada topico le agregar la pregunta relacionada"
-	topicosRelacionada do:[	:each | each agregarPregunta: unTitulo
-		descripcion: unaDescripcion
-		usuario: unUsuario]
-
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> agregarTopicoConNombre: nombre yDescripcion:descrip [
 "agrega un topico nuevo a la coleccion de topicos"
 |nuevoTopico|
@@ -46,7 +37,7 @@ topicos add: nuevoTopico .
 ^nuevoTopico 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> agregarUsuarioConNombre: nombre yContraseña:contra [ 
 "agrega un usuario nuevo a la coleccion de usuarios"
 |nuevoUsuario|
@@ -56,7 +47,7 @@ usuarios add: nuevoUsuario .
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> calcularPuntaje: unUsuario [
 	^ topicos sumNumbers: [ :topico | topico calcularPuntaje: unUsuario ]
 
@@ -71,12 +62,6 @@ CuOOra >> cantidadDeTopicos [
 { #category : #ayudaParaTests }
 CuOOra >> cantidadDeUsuarios [
 ^usuarios size.
-]
-
-{ #category : #'as yet unclassified' }
-CuOOra >> esMiTopico: topicosRelacionada [
-	^ topicos includesAny: topicosRelacionada
-
 ]
 
 { #category : #initialization }
@@ -115,7 +100,7 @@ t3 agregarPregunta: p1.
 t4 agregarPregunta: p2.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> listado:usuario [ 
 "devuelve el listado de las últimas 5 preguntas relevantes ordenadas según su fecha de creación. Por cada pregunta, se muestra su autor, cuántas respuestas tiene, y la cantidad de likes y dislikes
 "
@@ -125,13 +110,13 @@ preguntas:=(self obtenerPreguntasRelevantes: usuario) asSortedCollection:[:unaPr
 ^preguntas 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> obtenerPreguntasRealizadasPor:unUsuario [
 "Busca entre todos los topicos las preguntas realizadas por el usuario pasado por parametro"
 ^(topicos flatCollect: [ :topico | topico obtenerPreguntasRealizadasPor: unUsuario  ])asSet.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> obtenerPreguntasRelevantes:usuario [
 "Obtener preguntas relevantes para un usuario determinado: Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
 |todas|
@@ -141,7 +126,7 @@ todas addAll: usuario obtenerPreguntasDeTopicosDeInteres .
 ^(todas asSet).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> obtenerRespuestasRealizadasPor: unUsuario [
 	"Recorre todos los topicos para obtener las respuestas que realizo el usuario pasado por parametro"
 
@@ -155,13 +140,13 @@ CuOOra >> topicos [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> topicosPoseenPregunta:pregunta [
 "devuelve la coleccion de topicos que posee la pregunta recibida por parametro"
 ^(topicos select: [:topico | topico tengoPregunta: pregunta])
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #public }
 CuOOra >> usuarioConNombreDeUsuario: unNombre yContraseña: unaContra [
 	"Retorna el usuario si esta registrado en el sistema caso contrario retorna nil"
 

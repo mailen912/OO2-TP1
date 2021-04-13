@@ -51,9 +51,13 @@ topicosDeInteres detect: [ :t | t = topico ] ifNone: [topicosDeInteres add: topi
 
 { #category : #public }
 Usuario >> seguirUsuario: unUsuario [
-"Agrega a su coleccion de usuarios que sigue,el usuario que llega por parametro, en caso de no seguirlo"
-siguiendo detect: [ :u | u = unUsuario  ] ifNone: [siguiendo add: unUsuario]
+siguiendo detect: [ :s | s=unUsuario  ] ifNone: [ siguiendo add: unUsuario].
 
+]
+
+{ #category : #public }
+Usuario >> sigoA:usuario [ 
+^siguiendo includes: usuario.
 ]
 
 { #category : #accessing }
