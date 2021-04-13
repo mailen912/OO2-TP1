@@ -46,11 +46,7 @@ AnsweringComponent >> renderAnswerQuestion:aCanvas [.
 
 { #category : #'as yet unclassified' }
 AnsweringComponent >> renderContentOn: aCanvas [
-	aCanvas big:[aCanvas strong with: 'CuOOra'];space.
-	aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .	
-	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
-
-	aCanvas horizontalRule.
+   super renderContentOn: aCanvas.
     self renderPostsOn:aCanvas .
 	aCanvas
 		form: [ self renderAnswerQuestion:aCanvas.]

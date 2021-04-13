@@ -19,11 +19,7 @@ usuario :=nombre.
 
 { #category : #'as yet unclassified' }
 ProfileComponent >> renderContentOn: aCanvas [
-	aCanvas big:[aCanvas strong with: 'CuOOra'].	
-	aCanvas space.
-	aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .
-	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
-	aCanvas horizontalRule .
+  super renderContentOn: aCanvas .
 	aCanvas paragraph: [ aCanvas anchor callback: [ self call:(HomeComponent new) ];with: 'Volver al Home' ].
 	self renderPostOn:aCanvas .
 ]

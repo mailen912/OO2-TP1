@@ -36,11 +36,7 @@ aCanvas unorderedList: [ pregunta obtenerRespuestasOrdenadasPorPuntaje
 
 { #category : #rendering }
 QuestionInformationComponent >> renderContentOn:aCanvas [
-aCanvas big:[aCanvas strong with: 'CuOOra'];space.	
-	aCanvas space.
-	aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .
-	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
-	aCanvas horizontalRule.
+   super renderContentOn: aCanvas.
    self renderPostsOn: aCanvas.
 ]
 

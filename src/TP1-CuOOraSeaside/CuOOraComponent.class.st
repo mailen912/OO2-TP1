@@ -35,5 +35,9 @@ aCanvas text:'Topicos:'.
 
 { #category : #'as yet unclassified' }
 CuOOraComponent >> renderContentOn: aCanvas [
-self subclassResponsibility 
+aCanvas heading level:1; with:'CuOOra '.
+aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .	
+aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
+aCanvas horizontalRule.
+
 ]

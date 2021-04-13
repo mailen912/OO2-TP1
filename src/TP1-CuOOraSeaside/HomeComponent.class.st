@@ -11,11 +11,7 @@ Class {
 
 { #category : #rendering }
 HomeComponent >> renderContentOn: aCanvas [
-	aCanvas big:[aCanvas strong with: 'CuOOra'].	
-	aCanvas space";text:self session usuario nombreUsuario".
-	aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session usuario))];with:self session usuario nombreUsuario .
-	aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
-	aCanvas horizontalRule.
+super renderContentOn: aCanvas.
 	aCanvas paragraph: [ aCanvas anchor callback: [ self call:AskQuestionsComponent new ];with: 'Hacer una nueva pregunta' ].
    self renderPostsOn: aCanvas.
 
