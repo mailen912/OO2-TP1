@@ -35,6 +35,46 @@ self assert: cuoora cantidadDeUsuarios equals: 1.
 ]
 
 { #category : #tests }
+CuOOraTest >> testCalcularPuntaje [
+    | usuario usuarioX preg1 preg2 preg3|
+    usuarioX := Usuario nombreDeUsuario: 'usuario345' contraseña: '678'.
+    cuoora
+        agregarUsuarioConNombre: 'usuario232' yContraseña: '1231';
+        agregarTopicoConNombre: 'Smalltalk'
+            yDescripcion: 'orientado a objetos';
+        agregarTopicoConNombre: 'Pharo'
+            yDescripcion: 'orientacion a objetos 1'.
+    usuario := cuoora usuarios first.
+    self assert: (cuoora calcularPuntaje: usuario) equals: 0.
+    "No realizo ninguna pregunta/respuesta, ni le dio like/dislike a ninguna pregunta/respuesta"   
+preg1:=Pregunta newConTitulo: 'Pregunta 1' descripcion: 'Descripcion 1' yUsuario: usuario.
+preg2:=Pregunta newConTitulo: 'Pregunta 2'descripcion: 'Descripcion 2' yUsuario: usuario.
+preg3:=Pregunta newConTitulo:'Pregunta 3'  descripcion: 'Descripcion 3' yUsuario: usuarioX.
+cuoora topicos first
+        agregarPregunta: preg1;agregarPregunta: preg2.
+    cuoora topicos last
+        agregarPregunta: preg3.
+    self assert: (cuoora calcularPuntaje: usuario) equals: 40.
+    "Realizo dos preguntas (20* cada pregunta realizada)"
+    cuoora topicos last obtenerTodasLasPreguntas first
+        agregarRespuesta: 'Res 1'
+        creador: usuario.
+    self assert: (cuoora calcularPuntaje: usuario) equals: 40 + 50.
+"Realizo una respuesta a una pregunta que realizó otro usuario (50 * c/preg)"
+    cuoora topicos first obtenerTodasLasPreguntas first
+        haceLikeUnUsuario: usuario.    "Pregunta 1"
+    cuoora topicos first obtenerTodasLasPreguntas last
+        haceDislikeUnUsuario: usuario.    "Pregunta 2"
+    cuoora topicos last obtenerTodasLasPreguntas first respuestas first
+        haceLikeUnUsuario: usuario.    "Res 1"
+    self
+        assert: (cuoora calcularPuntaje: usuario)
+        equals: 40 + 50 + (1 - 1) + (0 - 0) + (0 - 0) + (1 - 0)
+        "Realizo en el primer topico un like y un dislike a dos preguntas(1-1),las respuestas no tuvieron like/dislike (0-0).
+        En el segunto topico no dio like/dislike a ninguna pregunta (0-0)y le dio like a una respuesta (1-0)"
+]
+
+{ #category : #tests }
 CuOOraTest >> testObtenerPreguntasRealizadasPor [ 
 |usuario|
 usuario:=Usuario nombreDeUsuario: 'xyz' contraseña:'clave123'. 
