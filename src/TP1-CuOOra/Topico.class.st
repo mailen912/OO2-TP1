@@ -21,20 +21,6 @@ preguntas add: nuevaPregunta.
 
 ]
 
-{ #category : #'as yet unclassified' }
-Topico >> agregarPregunta: unTitulo descripcion: unaDescripcion usuario: unUsuario [
-"borrar"
-	| nuevaPregunta |
-	nuevaPregunta := Pregunta
-		newConTitulo: unTitulo
-		descripcion: unaDescripcion
-		yUsuario: unUsuario.
-	preguntas add: nuevaPregunta.
-	^nuevaPregunta
-
-
-]
-
 { #category : #public }
 Topico >> borrarPregunta: unaPregunta [
 	"Elimina del sistema la pregunta y todas sus respuestas"
