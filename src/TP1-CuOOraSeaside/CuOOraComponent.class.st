@@ -10,6 +10,11 @@ CuOOraComponent >> getOut [
 	self requestContext redirectTo: self application url
 ]
 
+{ #category : #accessing }
+CuOOraComponent >> model [
+^CuOOra soleInstance .
+]
+
 { #category : #'as yet unclassified' }
 CuOOraComponent >> mostrarCuantasRespuestasTiene:aCanvas preg:pregunta [
 aCanvas text:' | ' ,(pregunta respuestas size)asString ,' repuestas'
@@ -40,4 +45,9 @@ aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session u
 aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
 aCanvas horizontalRule.
 
+]
+
+{ #category : #'as yet unclassified' }
+CuOOraComponent >> volverAlHome:aCanvas [
+aCanvas paragraph: [ aCanvas anchor callback: [ self call:(HomeComponent new) ];with: 'Volver al Home' ].
 ]

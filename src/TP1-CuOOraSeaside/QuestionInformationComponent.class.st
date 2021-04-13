@@ -37,6 +37,7 @@ aCanvas unorderedList: [ pregunta obtenerRespuestasOrdenadasPorPuntaje
 { #category : #rendering }
 QuestionInformationComponent >> renderContentOn:aCanvas [
    super renderContentOn: aCanvas.
+   self volverAlHome: aCanvas.
    self renderPostsOn: aCanvas.
 ]
 

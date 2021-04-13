@@ -49,12 +49,9 @@ LoginComponent >> proceedWith: aUser [
 { #category : #accessing }
 LoginComponent >> renderContentOn: aCanvas [
 	aCanvas big:[aCanvas strong with: 'CuOOra'].	
-	aCanvas
-		space;
-		horizontalRule.
-	aCanvas
-		form: [ self renderInputElementsOn: aCanvas.
-			self renderSignInButtonOn: aCanvas ]
+	aCanvas space;horizontalRule.
+	aCanvas form: [ self renderInputElementsOn: aCanvas.
+			          self renderSignInButtonOn: aCanvas ]
 ]
 
 { #category : #accessing }
@@ -67,7 +64,5 @@ LoginComponent >> renderInputElementsOn: aCanvas [
 
 { #category : #rendering }
 LoginComponent >> renderSignInButtonOn: aCanvas [
-	aCanvas submitButton
-		callback: [ self login ];
-		with: 'Iniciar Sesion'
+	aCanvas submitButton callback: [ self login ]; with: 'Iniciar Sesion'
 ]

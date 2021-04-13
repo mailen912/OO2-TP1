@@ -20,7 +20,7 @@ usuario :=nombre.
 { #category : #'as yet unclassified' }
 ProfileComponent >> renderContentOn: aCanvas [
   super renderContentOn: aCanvas .
-	aCanvas paragraph: [ aCanvas anchor callback: [ self call:(HomeComponent new) ];with: 'Volver al Home' ].
+	self volverAlHome:aCanvas.
 	self renderPostOn:aCanvas .
 ]
 
@@ -28,6 +28,12 @@ ProfileComponent >> renderContentOn: aCanvas [
 ProfileComponent >> renderDisikeButton:aCanvas post:post [
 aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
 	self call:(ProfileComponent conUsuario: usuario)] ;with:'dislike'
+]
+
+{ #category : #rendering }
+ProfileComponent >> renderFollowButton:aCanvas [
+(((self session usuario)=usuario)or:[self session usuario sigoA:usuario])ifFalse:[self seguirUsuario:aCanvas].
+
 ]
 
 { #category : #rendering }
@@ -39,9 +45,9 @@ aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
 { #category : #'as yet unclassified' }
 ProfileComponent >> renderPostOn:aCanvas [
 	aCanvas heading level: 2; with: 'Preguntas de ',usuario nombreUsuario.
-((self session usuario)=usuario)ifFalse:[self seguirUsuario:aCanvas].
+   self renderFollowButton: aCanvas.
 	aCanvas
-		unorderedList: [ ((CuOOra soleInstance )  obtenerPreguntasRealizadasPor: usuario )
+		unorderedList: [ (self model  obtenerPreguntasRealizadasPor: usuario )
 				do: [ :preg | aCanvas text:preg titulo.
 					self mostrarTopicos:aCanvas post:preg  .
 					self mostrarQuienRealizoLaPregunta:aCanvas preg:preg.
@@ -56,7 +62,6 @@ ProfileComponent >> renderPostOn:aCanvas [
 
 { #category : #'as yet unclassified' }
 ProfileComponent >> seguirUsuario:aCanvas [.
-	aCanvas submitButton
-		callback: [ self session usuario seguirUsuario: usuario ];
-		with: 'follow'.
+	aCanvas submitButton callback: [ (self session usuario) seguirUsuario: usuario ]; with: 'follow'.
+	
 ]

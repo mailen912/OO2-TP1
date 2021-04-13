@@ -33,7 +33,7 @@ aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
 HomeComponent >> renderPostsOn: aCanvas [
 	aCanvas heading level: 2; with: 'Ultimas Preguntas'.
 	aCanvas
-		unorderedList: [ ((CuOOra soleInstance )  listado: self session usuario)
+		unorderedList: [ (self model listado: self session usuario)
 				do: [ :preg | aCanvas anchor callback: [ self call:(QuestionInformationComponent dePregunta: preg)] ;with: preg titulo.
 					self mostrarTopicos:aCanvas post:preg  .
 					self mostrarQuienRealizoLaPregunta:aCanvas preg:preg.
