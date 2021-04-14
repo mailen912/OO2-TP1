@@ -57,6 +57,7 @@ siguiendo detect: [ :s | s=unUsuario  ] ifNone: [ siguiendo add: unUsuario].
 
 { #category : #public }
 Usuario >> sigoA:usuario [ 
+"Agrega un usuario como follower de otro, es decir, agrega al usuario recibido a la coleccion de siguiendo"
 ^siguiendo includes: usuario.
 ]
 

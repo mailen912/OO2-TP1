@@ -18,6 +18,11 @@ AnsweringComponent >> cancelar [
 self answer 
 ]
 
+{ #category : #'as yet unclassified' }
+AnsweringComponent >> crearClase [ 
+^(self class dePregunta: pregunta )
+]
+
 { #category : #accessing }
 AnsweringComponent >> desarrollo [ 
 ^desarrollo 
@@ -36,6 +41,7 @@ pregunta :=preg
 
 { #category : #rendering }
 AnsweringComponent >> renderAnswerQuestion:aCanvas [.
+"muestra el formulario para realizar una respuesta"
 	aCanvas label: 'RESPONDER:';break.
 	(aCanvas textArea on: #desarrollo of: self) columns: 80; rows: 5.
 	aCanvas break.
@@ -53,19 +59,8 @@ AnsweringComponent >> renderContentOn: aCanvas [
 ]
 
 { #category : #rendering }
-AnsweringComponent >> renderDisikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
-	self call:(AnsweringComponent dePregunta: pregunta)] ;with:'dislike'
-]
-
-{ #category : #rendering }
-AnsweringComponent >> renderLikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
-	self call:(AnsweringComponent dePregunta: pregunta)] ;with:'like'
-]
-
-{ #category : #rendering }
 AnsweringComponent >> renderPostsOn: aCanvas [
+"muestra la informacion de una pregunta elegida pero sin sus respuestas"
 aCanvas text: pregunta titulo.
 aCanvas text:'Topicos:'.
 aCanvas unorderedList:[ self mostrarTopicos: aCanvas post: pregunta]  .

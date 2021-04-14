@@ -22,6 +22,6 @@ fechaYHora :=DateAndTime now
 
 { #category : #public }
 Reaccion >> perteneceAlUsuario: usuariox [ 
-"verifica si el usuario que le llega como parametro es el mismo que tiene guardado"
+"verifica si el usuario que le llega como parametro es el mismo que tiene guardado como variable de instancia"
 ^(usuario = usuariox)
 ]

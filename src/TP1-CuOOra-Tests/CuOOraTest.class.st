@@ -18,20 +18,20 @@ cuoora:= CuOOra new.
 
 { #category : #tests }
 CuOOraTest >> testAgregarTopicoConNombreyDescripcion [
-	self assert: cuoora cantidadDeTopicos equals: 0.
+	self assert: (cuoora topicos size) equals: 0.
 	cuoora
 		agregarTopicoConNombre: 'Smalltalk'
 		yDescripcion: 'orientado a objetos'.
-	self assert: cuoora cantidadDeTopicos equals: 1
+	self assert: (cuoora topicos size)  equals: 1
 ]
 
 { #category : #tests }
 CuOOraTest >> testAgregarUsuarioConNombreyContraseña [ 
 "este test no da bien por la inicializacion de datos para pruebas"
-self assert: cuoora cantidadDeUsuarios equals: 0.
+self assert: (cuoora usuarios size) equals: 0.
 
   cuoora agregarUsuarioConNombre: 'usuario232' yContraseña: '1231'.
-self assert: cuoora cantidadDeUsuarios equals: 1.
+self assert: (cuoora usuarios size) equals: 1.
 ]
 
 { #category : #tests }

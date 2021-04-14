@@ -12,6 +12,11 @@ ProfileComponent class >> conUsuario:usuario [
 ^self new initializeConUsuario: usuario
 ]
 
+{ #category : #'as yet unclassified' }
+ProfileComponent >> crearClase [ 
+^(self class conUsuario:usuario )
+]
+
 { #category : #initialization }
 ProfileComponent >> initializeConUsuario:nombre [
 usuario :=nombre.
@@ -25,25 +30,14 @@ ProfileComponent >> renderContentOn: aCanvas [
 ]
 
 { #category : #rendering }
-ProfileComponent >> renderDisikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
-	self call:(ProfileComponent conUsuario: usuario)] ;with:'dislike'
-]
-
-{ #category : #rendering }
 ProfileComponent >> renderFollowButton:aCanvas [
-(((self session usuario)=usuario)or:[self session usuario sigoA:usuario])ifFalse:[self seguirUsuario:aCanvas].
+(((self session usuario)=usuario)or:[(self session usuario siguiendo)includes:usuario])ifFalse:[self seguirUsuario:aCanvas].
 
-]
-
-{ #category : #rendering }
-ProfileComponent >> renderLikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
-	self call:(ProfileComponent conUsuario: usuario)] ;with:'like'
 ]
 
 { #category : #'as yet unclassified' }
 ProfileComponent >> renderPostOn:aCanvas [
+"Muestra las preguntas realizadas por el usuario que se recibio anteriormente, con su informacion"
 	aCanvas heading level: 2; with: 'Preguntas de ',usuario nombreUsuario.
    self renderFollowButton: aCanvas.
 	aCanvas

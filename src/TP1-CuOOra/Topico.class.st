@@ -16,7 +16,7 @@ Topico class >> nombreDeTopico:topico descripcion:descrip [
 
 { #category : #public }
 Topico >> agregarPregunta: nuevaPregunta [
-
+"agrega una pregunta a la coleccion de preguntas"
 preguntas add: nuevaPregunta.
 
 ]
@@ -32,7 +32,7 @@ Topico >> borrarPregunta: unaPregunta [
 
 { #category : #public }
 Topico >> calcularPuntaje: unUsuario [
-	"Se indica un usuario, y se retorna un puntaje que se calcula en función de su actividad en la red social. Por cada pregunta realizada, suma 20 puntos, y por cada respuesta a una pregunta que realizó otro usuario, suma 50 puntos. Además, se suma puntaje determinado por la diferencia entre likes y dislikes de todas sus participaciones, que de tener mas dislikes que likes, puede ser negativo"
+	"Se recibe un usuario, y se retorna un puntaje que se calcula en función de su actividad en la red social. Por cada pregunta realizada, suma 20 puntos, y por cada respuesta a una pregunta que realizó otro usuario, suma 50 puntos. Además, se suma puntaje determinado por la diferencia entre likes y dislikes de todas sus participaciones, que de tener mas dislikes que likes, puede ser negativo"
 	| susPreguntas preguntasDeOtros susRespuestas puntajePreguntas puntajeRespuestas |
 	susPreguntas := self obtenerPreguntasRealizadasPor: unUsuario.
 	preguntasDeOtros := self obtenerPreguntasDeOtrosUsuarios: unUsuario.

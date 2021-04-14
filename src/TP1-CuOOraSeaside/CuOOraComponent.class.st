@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+CuOOraComponent >> crearClase [ 
+^(self subclassResponsibility )
+]
+
+{ #category : #'as yet unclassified' }
 CuOOraComponent >> getOut [
 	self session unregister.
 	self requestContext redirectTo: self application url
@@ -45,6 +50,18 @@ aCanvas anchor callback:[self call:(ProfileComponent conUsuario: (self session u
 aCanvas paragraph: [ aCanvas anchor callback: [ self getOut ];with: 'Log Out' ].
 aCanvas horizontalRule.
 
+]
+
+{ #category : #rendering }
+CuOOraComponent >> renderDisikeButton:aCanvas post:post [
+aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
+	self call:(self crearClase)] ;with:'dislike'
+]
+
+{ #category : #rendering }
+CuOOraComponent >> renderLikeButton:aCanvas post:post [
+aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
+	self call:(self crearClase)] ;with:'like'
 ]
 
 { #category : #'as yet unclassified' }

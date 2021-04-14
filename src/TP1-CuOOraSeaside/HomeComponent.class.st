@@ -9,6 +9,11 @@ Class {
 	#category : #'TP1-CuOOraSeaside'
 }
 
+{ #category : #'as yet unclassified' }
+HomeComponent >> crearClase [
+^(self class new)
+]
+
 { #category : #rendering }
 HomeComponent >> renderContentOn: aCanvas [
 super renderContentOn: aCanvas.
@@ -18,19 +23,8 @@ super renderContentOn: aCanvas.
 ]
 
 { #category : #rendering }
-HomeComponent >> renderDisikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
-	self call:(self class new)] ;with:'dislike'
-]
-
-{ #category : #'as yet unclassified' }
-HomeComponent >> renderLikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
-	self call:(self class new)] ;with:'like'
-]
-
-{ #category : #rendering }
 HomeComponent >> renderPostsOn: aCanvas [
+"muestra las preguntas que son relevantes para el usuario que inicia sesion e informacion de las mismas"
 	aCanvas heading level: 2; with: 'Ultimas Preguntas'.
 	aCanvas
 		unorderedList: [ (self model listado: self session usuario)

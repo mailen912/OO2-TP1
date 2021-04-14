@@ -37,6 +37,7 @@ self answer.
 
 { #category : #rendering }
 AskQuestionsComponent >> renderAskQuestion:aCanvas [.
+"muestra un formulario para hacer una pregunta"
 	aCanvas label: 'Titulo'.
 	aCanvas paragraph: [ aCanvas textInput on: #titulo of: self ].
 	aCanvas label: 'Desarrollo';break.

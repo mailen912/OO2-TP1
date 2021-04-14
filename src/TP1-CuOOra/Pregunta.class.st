@@ -19,17 +19,13 @@ Pregunta class >> newConTitulo: unTitulo descripcion: unaDescripcion yUsuario: u
 
 { #category : #public }
 Pregunta >> agregarRespuesta: texto creador: unUsuario [
+"se agrega una respuesta a la coleccion de respuestas"
 	| nuevaRespuesta |
 	nuevaRespuesta := Respuesta conTexto: texto  yCreador:unUsuario.
 	respuestas add: nuevaRespuesta.
 	^nuevaRespuesta
 
 
-]
-
-{ #category : #accessing }
-Pregunta >> cantidadRespuestas [
-^(respuestas size)
 ]
 
 { #category : #accessing }
@@ -46,6 +42,7 @@ Pregunta >> eliminarRespuestas [
 
 { #category : #initialization }
 Pregunta >> initializeConTitulo: unTitulo yDescripcion: unaDescripcion yUsuario: unUsuario [
+"inicializa los valores de una pregunta"
     self initializeConCreador: unUsuario .
 	titulo := unTitulo.
 	descripcion := unaDescripcion.

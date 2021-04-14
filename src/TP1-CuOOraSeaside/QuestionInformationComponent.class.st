@@ -12,6 +12,11 @@ QuestionInformationComponent class >> dePregunta:pregunta [
 ^self new initializeConPregunta:pregunta 
 ]
 
+{ #category : #'as yet unclassified' }
+QuestionInformationComponent >> crearClase [ 
+^(self class dePregunta: pregunta )
+]
+
 { #category : #initialization }
 QuestionInformationComponent >> initializeConPregunta:preg [ 
 pregunta :=preg.
@@ -19,6 +24,7 @@ pregunta :=preg.
 
 { #category : #rendering }
 QuestionInformationComponent >> renderAnswerOn:aCanvas [ 
+"muestra las respuestas de una pregunta elegida"
 aCanvas horizontalRule .
 aCanvas unorderedList: [ pregunta obtenerRespuestasOrdenadasPorPuntaje
 				do: [ :resp | self mostrarQuienRealizoLaPregunta: aCanvas  preg:resp  .
@@ -42,19 +48,8 @@ QuestionInformationComponent >> renderContentOn:aCanvas [
 ]
 
 { #category : #rendering }
-QuestionInformationComponent >> renderDisikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
-	self call:(QuestionInformationComponent dePregunta: pregunta)] ;with:'dislike'
-]
-
-{ #category : #rendering }
-QuestionInformationComponent >> renderLikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
-	self call:(QuestionInformationComponent dePregunta: pregunta)] ;with:'like'
-]
-
-{ #category : #rendering }
 QuestionInformationComponent >> renderPostsOn: aCanvas [
+"Muestra la informacion de una pregunta elegida"
 aCanvas text: pregunta titulo.
 aCanvas unorderedList:[ self mostrarTopicos: aCanvas post:pregunta ]  .
 					aCanvas paragraph: [ self mostrarQuienRealizoLaPregunta: aCanvas preg:pregunta.

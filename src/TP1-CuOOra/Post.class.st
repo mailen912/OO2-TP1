@@ -39,8 +39,7 @@ Post >> fechaHora [
 
 { #category : #public }
 Post >> haceDislikeUnUsuario: usuariox [
-	"puede hacer uno solo(no debe estar en la coleccion dislikes) y
- si antes hizo like (si esta en likes) lo debo eliminar"
+	"Un usuario puede realizar un solo like o un solo dislike para una pregunta o respuesta. Si un usuario dio like a una pregunta o respuesta, y luego da un dislike, lo que sucece es que se elimina el like anterior, y se agrega el dislike"
 
 	(dislikes anySatisfy: [ :mg | mg perteneceAlUsuario: usuariox ])
 		ifFalse: [ | nuevoDislike reaccion |
@@ -54,8 +53,7 @@ Post >> haceDislikeUnUsuario: usuariox [
 
 { #category : #public }
 Post >> haceLikeUnUsuario: usuariox [
-	"puede hacer un solo(no debe estar en la coleccion like)
- no puede hacerlo si ya hizo dislike(si esta en dislike lo debo eliminar"
+	"Un usuario puede realizar un solo like para una pregunta o respuesta.Si un usuario dio dislike a una pregunta o respuesta, y luego da un like, lo que sucece es que se elimina el dislike anterior, y se agrega el like"
 
 	(likes anySatisfy: [ :mg | mg perteneceAlUsuario: usuariox ])
 		ifFalse: [ | nuevoLike reaccion |

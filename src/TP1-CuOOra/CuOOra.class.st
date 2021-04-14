@@ -54,16 +54,6 @@ CuOOra >> calcularPuntaje: unUsuario [
 
 ]
 
-{ #category : #ayudaParaTests }
-CuOOra >> cantidadDeTopicos [
-^topicos size
-]
-
-{ #category : #ayudaParaTests }
-CuOOra >> cantidadDeUsuarios [
-^usuarios size.
-]
-
 { #category : #initialization }
 CuOOra >> initialize [ 
 usuarios:= OrderedCollection new.
@@ -118,7 +108,8 @@ CuOOra >> obtenerPreguntasRealizadasPor:unUsuario [
 
 { #category : #public }
 CuOOra >> obtenerPreguntasRelevantes:usuario [
-"Obtener preguntas relevantes para un usuario determinado: Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
+"Devuelve las preguntas relevantes para un usuario determinado
+ Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
 |todas|
 todas:=OrderedCollection new.
 todas:=usuario siguiendo flatCollect: [ :user| self obtenerPreguntasRealizadasPor: user ].
