@@ -35,8 +35,11 @@ TopicoTest >> testBorrarPregunta [
 	
 	topico1 agregarPregunta: pregunta.
 	self assert: topico1 obtenerTodasLasPreguntas size equals: 1.
-	topico1 borrarPregunta: topico1 obtenerTodasLasPreguntas first.
-	self assert: topico1 obtenerTodasLasPreguntas size equals: 0
+	topico1 borrarPregunta: pregunta.
+	self assert: topico1 obtenerTodasLasPreguntas size equals: 0.
+	topico1 borrarPregunta: pregunta .
+	self assert: topico1 obtenerTodasLasPreguntas size equals: 0.
+	
 
 ]
 

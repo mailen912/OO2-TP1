@@ -48,6 +48,11 @@ usuarios add: nuevoUsuario .
 ]
 
 { #category : #public }
+CuOOra >> borrarPregunta: preg [
+topicos do:[:t | t borrarPregunta: preg].
+]
+
+{ #category : #public }
 CuOOra >> calcularPuntaje: unUsuario [
 	^ topicos sumNumbers: [ :topico | topico calcularPuntaje: unUsuario ]
 
@@ -65,13 +70,13 @@ topicos := OrderedCollection new.
 { #category : #initialization }
 CuOOra >> initializeConDatos [
 "instanciación de prueba"
-|pedro diego juan t1 t2 p1 p2 t3 t4|
+|pedro diego juan  t2 p1 p2 t3 t4|
 pedro:=self agregarUsuarioConNombre: 'pedro@cuoora.com' yContraseña:'pedro@cuoora.com'.
 diego:=self agregarUsuarioConNombre: 'diego@cuoora.com' yContraseña:'diego@cuoora.com'.
 juan:=self agregarUsuarioConNombre: 'juan@cuoora.com' yContraseña:'juan@cuoora.com'.
 juan seguirUsuario: diego.
 pedro seguirUsuario: juan.
-t1:=self agregarTopicoConNombre: 'OO1' yDescripcion: ''.
+
 t2:=self agregarTopicoConNombre: 'OO1' yDescripcion: ''.
 t3:=self agregarTopicoConNombre: 'Test de unidad' yDescripcion:''.
 t4:=self agregarTopicoConNombre: 'Smalltalk' yDescripcion:''.
@@ -84,7 +89,7 @@ p2:=Pregunta newConTitulo:  '¿Qué significa #messageNotUnderstood?' descripcio
 p2 agregarRespuesta: 'Significa que el objeto que recibió el mensaje
 no encontró ningún método para ejecutar en respuesta.' creador:pedro .
 
-t1 agregarPregunta: p1.
+t2 agregarPregunta: p1.
 t2 agregarPregunta: p2.
 t3 agregarPregunta: p1.
 t4 agregarPregunta: p2.
@@ -97,7 +102,7 @@ CuOOra >> listado:usuario [
 |preguntas|
 "self halt."
 preguntas:=(self obtenerPreguntasRelevantes: usuario) asSortedCollection:[:unaPreg :otraPreg | unaPreg fechaHora  > otraPreg fechaHora ]. 
-^preguntas 
+(preguntas size)<5 ifTrue:[^preguntas ]ifFalse:[^(preguntas first: 5)].
 ]
 
 { #category : #public }

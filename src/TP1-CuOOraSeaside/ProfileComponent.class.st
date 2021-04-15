@@ -17,6 +17,13 @@ ProfileComponent >> crearClase [
 ^(self class conUsuario:usuario )
 ]
 
+{ #category : #'as yet unclassified' }
+ProfileComponent >> followUser:aCanvas [.
+aCanvas anchor callback: [ ((self session usuario)seguirUsuario: usuario).
+	self call:(ProfileComponent conUsuario: usuario)] ;with:'seguir'
+	
+]
+
 { #category : #initialization }
 ProfileComponent >> initializeConUsuario:nombre [
 usuario :=nombre.
@@ -31,7 +38,7 @@ ProfileComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 ProfileComponent >> renderFollowButton:aCanvas [
-(((self session usuario)=usuario)or:[(self session usuario siguiendo)includes:usuario])ifFalse:[self seguirUsuario:aCanvas].
+(((self session usuario)=usuario)or:[(self session usuario) sigoA:usuario])ifFalse:[self followUser: aCanvas ].
 
 ]
 
@@ -42,9 +49,8 @@ ProfileComponent >> renderPostOn:aCanvas [
    self renderFollowButton: aCanvas.
 	aCanvas
 		unorderedList: [ (self model  obtenerPreguntasRealizadasPor: usuario )
-				do: [ :preg | aCanvas text:preg titulo.
+				do: [ :preg | aCanvas anchor callback: [ self call:(QuestionInformationComponent dePregunta: preg)] ;with: preg titulo.
 					self mostrarTopicos:aCanvas post:preg  .
-					self mostrarQuienRealizoLaPregunta:aCanvas preg:preg.
 					self mostrarCuantasRespuestasTiene: aCanvas preg:preg. 
 					self mostrarLikesYDislikes:aCanvas post:preg.
 					self renderLikeButton: aCanvas  post:preg.
@@ -52,10 +58,4 @@ ProfileComponent >> renderPostOn:aCanvas [
 					 self renderDisikeButton: aCanvas  post:preg.
 					aCanvas horizontalRule.]].
 			
-]
-
-{ #category : #'as yet unclassified' }
-ProfileComponent >> seguirUsuario:aCanvas [.
-	aCanvas submitButton callback: [ (self session usuario) seguirUsuario: usuario ]; with: 'follow'.
-	
 ]

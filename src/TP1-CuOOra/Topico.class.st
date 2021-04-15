@@ -24,10 +24,11 @@ preguntas add: nuevaPregunta.
 { #category : #public }
 Topico >> borrarPregunta: unaPregunta [
 	"Elimina del sistema la pregunta y todas sus respuestas"
+	(self tengoPregunta: unaPregunta )ifTrue: [ 
   unaPregunta eliminarRespuestas .
 
 	preguntas remove: unaPregunta
-
+].
 ]
 
 { #category : #public }

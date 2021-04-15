@@ -35,5 +35,7 @@ HomeComponent >> renderPostsOn: aCanvas [
 					self mostrarLikesYDislikes:aCanvas post:preg.
 				    (self renderLikeButton: aCanvas post:preg).
 				     aCanvas space.
-				    self  renderDisikeButton:aCanvas post:preg ]].
+				    self  renderDisikeButton:aCanvas post:preg.
+				aCanvas  horizontalRule . ]].
+
 ]
