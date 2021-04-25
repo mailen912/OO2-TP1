@@ -17,11 +17,11 @@ Reaccion class >> delUsuario:usuariox [
 Reaccion >> initializeConUsuario:usuariox [
 "se inicializan los valores de una reaccion"
 usuario :=usuariox.
-fechaYHora :=DateAndTime now
+fechaYHora :=DateAndTime now 
 ]
 
 { #category : #public }
 Reaccion >> perteneceAlUsuario: usuariox [ 
 "verifica si el usuario que le llega como parametro es el mismo que tiene guardado como variable de instancia"
-^(usuario = usuariox)
+^(usuario = usuariox).
 ]

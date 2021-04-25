@@ -24,7 +24,7 @@ CuOOra class >> soleInstance [
 { #category : #public }
 CuOOra >> agregarPreguntaALosTopicos: topicosRelacionada preg:preg [
 "A cada topico le agregar la pregunta relacionada"
-	topicosRelacionada do:[	:each | each agregarPregunta: preg]
+	topicosRelacionada do:[	:each | each agregarPregunta: preg] 
 
 ]
 
@@ -32,7 +32,7 @@ CuOOra >> agregarPreguntaALosTopicos: topicosRelacionada preg:preg [
 CuOOra >> agregarTopicoConNombre: nombre yDescripcion:descrip [
 "agrega un topico nuevo a la coleccion de topicos"
 |nuevoTopico|
-nuevoTopico:= Topico nombreDeTopico: nombre descripcion:descrip. 
+nuevoTopico:= Topico nombreDeTopico: nombre descripcion:descrip.  
 topicos add: nuevoTopico .
 ^nuevoTopico 
 ]
@@ -41,7 +41,7 @@ topicos add: nuevoTopico .
 CuOOra >> agregarUsuarioConNombre: nombre yContraseña:contra [ 
 "agrega un usuario nuevo a la coleccion de usuarios"
 |nuevoUsuario|
-nuevoUsuario:= Usuario nombreDeUsuario: nombre contraseña: contra.
+nuevoUsuario:= Usuario nombreDeUsuario: nombre contraseña: contra. 
 usuarios add: nuevoUsuario .
 ^nuevoUsuario 
 
@@ -49,7 +49,7 @@ usuarios add: nuevoUsuario .
 
 { #category : #public }
 CuOOra >> borrarPregunta: preg [
-topicos do:[:t | t borrarPregunta: preg].
+topicos do:[:t | t borrarPregunta: preg]. 
 ]
 
 { #category : #public }
@@ -61,7 +61,7 @@ CuOOra >> calcularPuntaje: unUsuario [
 	susRespuestas := (preguntasDeOtros flatCollect: [ :preg | preg obtenerRespuestasPor: unUsuario ]) size.
 	puntajePreguntas := susPreguntas sumNumbers: [ :preg | preg puntaje ].
 	puntajeRespuestas := (self obtenerRespuestasRealizadasPor: unUsuario)sumNumbers: [ :res | res puntaje ].
-	^ susPreguntas size * 20 + (susRespuestas * 50) + puntajePreguntas + puntajeRespuestas
+	^ susPreguntas size * 20 + (susRespuestas * 50) + puntajePreguntas + puntajeRespuestas 
 
 
 
@@ -71,7 +71,7 @@ CuOOra >> calcularPuntaje: unUsuario [
 CuOOra >> initialize [ 
 usuarios:= OrderedCollection new.
 
-topicos := OrderedCollection new.
+topicos := OrderedCollection new. 
 
 ]
 
@@ -87,7 +87,7 @@ pedro seguirUsuario: juan.
 
 t2:=self agregarTopicoConNombre: 'OO1' yDescripcion: ''.
 t3:=self agregarTopicoConNombre: 'Test de unidad' yDescripcion:''.
-t4:=self agregarTopicoConNombre: 'Smalltalk' yDescripcion:''.
+t4:=self agregarTopicoConNombre: 'Smalltalk' yDescripcion:''. 
 
 p1:=Pregunta newConTitulo: '¿Para qué sirve el método SetUp?'  descripcion:''  yUsuario: pedro.
 p1 agregarRespuesta: 'Respuesta de Diego: Sirve para instanciar los objetos que son
@@ -110,7 +110,7 @@ CuOOra >> listado:usuario [
 |preguntas|
 "self halt."
 preguntas:=(self obtenerPreguntasRelevantes: usuario) asSortedCollection:[:unaPreg :otraPreg | unaPreg fechaHora  > otraPreg fechaHora ]. 
-(preguntas size)<5 ifTrue:[^preguntas ]ifFalse:[^(preguntas first: 5)].
+(preguntas size)<5 ifTrue:[^preguntas ]ifFalse:[^(preguntas first: 5)]. 
 ]
 
 { #category : #private }
@@ -123,7 +123,7 @@ CuOOra >> obtenerPreguntasDeOtrosUsuarios: unUsuario [
 { #category : #public }
 CuOOra >> obtenerPreguntasRealizadasPor:unUsuario [
 "Busca entre todos los topicos las preguntas realizadas por el usuario pasado por parametro"
-^(topicos flatCollect: [ :topico | topico obtenerPreguntasRealizadasPor: unUsuario  ])asSet.
+^(topicos flatCollect: [ :topico | topico obtenerPreguntasRealizadasPor: unUsuario  ])asSet. 
 ]
 
 { #category : #public }
@@ -132,7 +132,7 @@ CuOOra >> obtenerPreguntasRelevantes:usuario [
  Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
 |todas|
 todas:=usuario siguiendo flatCollect: [ :user| self obtenerPreguntasRealizadasPor: user ].
-todas addAll: usuario obtenerPreguntasDeTopicosDeInteres .
+todas addAll: usuario obtenerPreguntasDeTopicosDeInteres. 
 ^(todas asSet).
 ]
 
@@ -141,19 +141,19 @@ CuOOra >> obtenerRespuestasRealizadasPor: unUsuario [
 	"Recorre todos los topicos para obtener las respuestas que realizo el usuario pasado por parametro"
 
 	^ topicos
-		flatCollect: [ :topico | topico obtenerRespuestasRealizadasPor: unUsuario ]
+		flatCollect: [ :topico | topico obtenerRespuestasRealizadasPor: unUsuario ] 
 ]
 
 { #category : #accessing }
 CuOOra >> topicos [
-	^ topicos
+	^ topicos 
 
 ]
 
 { #category : #public }
 CuOOra >> topicosPoseenPregunta:pregunta [
 "devuelve la coleccion de topicos que posee la pregunta recibida por parametro"
-^(topicos select: [:topico | topico tengoPregunta: pregunta])
+^(topicos select: [:topico | topico tengoPregunta: pregunta]) 
 ]
 
 { #category : #public }
@@ -162,13 +162,13 @@ CuOOra >> usuarioConNombreDeUsuario: unNombre yContraseña: unaContra [
 
 ^usuarios
 		detect:
-			[ :usuario | usuario nombreUsuario = unNombre & (usuario contraseña = unaContra) ]
+			[ :usuario | usuario nombreUsuario = unNombre & (usuario contraseña = unaContra) ] 
 		ifNone: [ nil ].
 	
 ]
 
 { #category : #accessing }
 CuOOra >> usuarios [
-	^ usuarios
+	^ usuarios 
 
 ]

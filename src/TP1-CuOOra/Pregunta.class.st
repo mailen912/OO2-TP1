@@ -23,20 +23,20 @@ Pregunta >> agregarRespuesta: texto creador: unUsuario [
 	| nuevaRespuesta |
 	nuevaRespuesta := Respuesta conTexto: texto  yCreador:unUsuario.
 	respuestas add: nuevaRespuesta.
-	^nuevaRespuesta
+	^nuevaRespuesta 
 
 
 ]
 
 { #category : #accessing }
 Pregunta >> descripcion [
-^descripcion 
+^descripcion  
 ]
 
 { #category : #public }
 Pregunta >> eliminarRespuestas [
            "Elimina todas sus respuestas"
-	respuestas removeAll
+	respuestas removeAll 
 
 ]
 
@@ -46,14 +46,14 @@ Pregunta >> initializeConTitulo: unTitulo yDescripcion: unaDescripcion yUsuario:
     self initializeConCreador: unUsuario .
 	titulo := unTitulo.
 	descripcion := unaDescripcion.
-	respuestas := OrderedCollection new
+	respuestas := OrderedCollection new 
 
 ]
 
 { #category : #public }
 Pregunta >> obtenerRespuestasOrdenadasPorPuntaje [
 "se retornan todas las respuestas ordenadas de mayor a menor por cantidad mayor puntaje, el que está dado por la diferencia de likes y dislikes. "
-^respuestas  asSortedCollection: [:unaRta :otraRta | unaRta puntaje > otraRta puntaje]. 
+^respuestas  asSortedCollection: [:unaRta :otraRta | unaRta puntaje > otraRta puntaje].  
 ]
 
 { #category : #public }
@@ -61,16 +61,16 @@ Pregunta >> obtenerRespuestasPor: unUsuario [
            "Restorna una coleccion de respuestas en donde el creador coincide con el parametro "
 	^ respuestas
 		select: [ :respuesta | respuesta yoLaRealize: unUsuario ]
-
+ 
 ]
 
 { #category : #accessing }
 Pregunta >> respuestas [
-	^ respuestas
+	^ respuestas 
 
 ]
 
 { #category : #accessing }
 Pregunta >> titulo [
-^titulo
+^titulo 
 ]

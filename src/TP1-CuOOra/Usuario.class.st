@@ -18,7 +18,7 @@ Usuario class >> nombreDeUsuario:nombre contraseña: password [
 
 { #category : #accessing }
 Usuario >> contraseña [ 
-^contraseña 
+^contraseña  
 ]
 
 { #category : #initialization }
@@ -28,46 +28,46 @@ nombreUsuario :=nombre.
 contraseña :=password .
 fechaYhoraCreacion := DateAndTime now.
 siguiendo :=Set new.
-topicosDeInteres:= Set new.
+topicosDeInteres:= Set new. 
 
 ]
 
 { #category : #accessing }
 Usuario >> nombreUsuario [ 
-^nombreUsuario 
+^nombreUsuario  
 ]
 
 { #category : #public }
 Usuario >> obtenerPreguntasDeTopicosDeInteres [
 "Devuelve una coleccion de todas las preguntas de todos los topicos de interes del usuario"
-^topicosDeInteres flatCollect: [ :topi|topi obtenerTodasLasPreguntas ]
+^topicosDeInteres flatCollect: [ :topi|topi obtenerTodasLasPreguntas ] 
 ]
 
 { #category : #public }
 Usuario >> registrarTopicoDeInteres:topico [ 
 "Se agrega el topico a la coleccion de topicos de interes del usuario"
-topicosDeInteres add: topico 
+topicosDeInteres add: topico  
 ]
 
 { #category : #public }
 Usuario >> seguirUsuario: unUsuario [
-siguiendo add: unUsuario.
+siguiendo add: unUsuario. 
 
 ]
 
 { #category : #public }
 Usuario >> sigoA:usuario [ 
 "Agrega un usuario como follower de otro, es decir, agrega al usuario recibido a la coleccion de siguiendo"
-^siguiendo includes: usuario.
+^siguiendo includes: usuario. 
 ]
 
 { #category : #accessing }
 Usuario >> siguiendo [
 "devuelve una coleccion de todos los usuarios a los que sigue"
-^siguiendo 
+^siguiendo  
 ]
 
 { #category : #accessing }
 Usuario >> topicosDeInteres [
-^topicosDeInteres 
+^topicosDeInteres  
 ]

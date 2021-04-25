@@ -18,35 +18,34 @@ Post class >> newConCreador: usuario [
 
 { #category : #ayudaTests }
 Post >> cantidadDeDislikes [
-^dislikes size
+^dislikes size 
 ]
 
 { #category : #ayudaTests }
 Post >> cantidadDeLikes [
-^likes size
+^likes size 
 ]
 
 { #category : #accessing }
 Post >> creador [
-^creador
+^creador 
 ]
 
 { #category : #accessing }
 Post >> fechaHora [
 "devuelve la fecha y hora de creacion de la pregunta"
-^fechaHora 
+^fechaHora  
 ]
 
 { #category : #public }
 Post >> haceDislikeUnUsuario: usuariox [
-		self reaccionaCon:dislikes y:likes unUsuario:usuariox
+		self reaccionaCon:dislikes y:likes unUsuario:usuariox 
 		
 ]
 
 { #category : #public }
 Post >> haceLikeUnUsuario: usuariox [
-
-				self reaccionaCon:likes y:dislikes unUsuario:usuariox
+	self reaccionaCon:likes y:dislikes unUsuario:usuariox
 		
 ]
 
@@ -62,7 +61,7 @@ Post >> initializeConCreador: usuario [
 { #category : #public }
 Post >> puntaje [
 "devuelve el puntaje  de la respuesta, el cual esta dado por la diferencia entre likes y dislikes"
-^(self cantidadDeLikes) -(self cantidadDeDislikes ) 
+^(self cantidadDeLikes) -(self  cantidadDeDislikes ) 
 ]
 
 { #category : #private }
@@ -75,11 +74,11 @@ Post >> reaccionaCon: reacciones y: antireacciones unUsuario: usuariox [
 	antireaccion := antireacciones
 		detect: [ :anti | anti perteneceAlUsuario: usuariox ]
 		ifNone: [ nil ].
-	antireaccion ifNotNil: [ antireacciones remove: antireaccion ]
+	antireaccion ifNotNil: [ antireacciones remove: antireaccion ] 
 ]
 
 { #category : #public }
-Post >> yoLaRealize: unUsuario [
+Post >> yoLaRealize: unUsuario [ 
 	^ creador = unUsuario
 
 ]

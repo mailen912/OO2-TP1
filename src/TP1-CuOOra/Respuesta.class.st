@@ -15,12 +15,12 @@ Respuesta class >> conTexto: unTexto yCreador: creator [
 { #category : #initialization }
 Respuesta >> initializeConTexto: unTexto yCreador: creator [
 self initializeConCreador: creator.
-	texto := unTexto
+	texto := unTexto 
 
 ]
 
 { #category : #accessing }
 Respuesta >> texto [
-	^ texto
+	^ texto 
 
 ]
