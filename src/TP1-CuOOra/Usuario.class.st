@@ -27,8 +27,8 @@ Usuario >> nombreDeUsuario:nombre contraseña: password [
 nombreUsuario :=nombre.
 contraseña :=password .
 fechaYhoraCreacion := DateAndTime now.
-siguiendo :=OrderedCollection new.
-topicosDeInteres:= OrderedCollection new.
+siguiendo :=Set new.
+topicosDeInteres:= Set new.
 
 ]
 
@@ -46,12 +46,12 @@ Usuario >> obtenerPreguntasDeTopicosDeInteres [
 { #category : #public }
 Usuario >> registrarTopicoDeInteres:topico [ 
 "Se agrega el topico a la coleccion de topicos de interes del usuario"
-topicosDeInteres detect: [ :t | t = topico ] ifNone: [topicosDeInteres add: topico ]
+topicosDeInteres add: topico 
 ]
 
 { #category : #public }
 Usuario >> seguirUsuario: unUsuario [
-siguiendo detect: [ :s | s=unUsuario  ] ifNone: [ siguiendo add: unUsuario].
+siguiendo add: unUsuario.
 
 ]
 
