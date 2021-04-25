@@ -31,20 +31,6 @@ Topico >> borrarPregunta: unaPregunta [
 ].
 ]
 
-{ #category : #public }
-Topico >> calcularPuntaje: unUsuario [
-	"Se recibe un usuario, y se retorna un puntaje que se calcula en función de su actividad en la red social. Por cada pregunta realizada, suma 20 puntos, y por cada respuesta a una pregunta que realizó otro usuario, suma 50 puntos. Además, se suma puntaje determinado por la diferencia entre likes y dislikes de todas sus participaciones, que de tener mas dislikes que likes, puede ser negativo"
-	| susPreguntas preguntasDeOtros susRespuestas puntajePreguntas puntajeRespuestas |
-	susPreguntas := self obtenerPreguntasRealizadasPor: unUsuario.
-	preguntasDeOtros := self obtenerPreguntasDeOtrosUsuarios: unUsuario.
-	susRespuestas := (preguntasDeOtros flatCollect: [ :preg | preg obtenerRespuestasPor: unUsuario ]) size.
-	puntajePreguntas := susPreguntas sumNumbers: [ :preg | preg puntaje ].
-	puntajeRespuestas := (self obtenerRespuestasRealizadasPor: unUsuario)sumNumbers: [ :res | res puntaje ].
-	^ susPreguntas size * 20 + (susRespuestas * 50) + puntajePreguntas + puntajeRespuestas
-
-
-]
-
 { #category : #initialization }
 Topico >> nombreDeTopico:topico descripcion:descrip [
 "inicializa un topico"
@@ -58,11 +44,9 @@ Topico >> nombreTopico [
 ^nombreTopico 
 ]
 
-{ #category : #private }
-Topico >> obtenerPreguntasDeOtrosUsuarios: unUsuario [
-	"Retorna una coleccion de preguntas que no realizo el usuario pasado por parametro"
-
-	^ preguntas reject: [ :pregunta | pregunta yoLaRealize: unUsuario ]
+{ #category : #'as yet unclassified' }
+Topico >> obtenerPreguntasDeOtros:unUsuario [
+^preguntas reject: [ :pregunta | pregunta yoLaRealize: unUsuario ]
 
 ]
 

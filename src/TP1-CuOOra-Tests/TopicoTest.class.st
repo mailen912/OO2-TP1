@@ -43,12 +43,6 @@ TopicoTest >> testBorrarPregunta [
 
 ]
 
-{ #category : #test }
-TopicoTest >> testCalcularPuntaje [
-
-	
-]
-
 { #category : #tests }
 TopicoTest >> testObtenerPreguntasRealizadasPor [
    self assert: (topico1 obtenerPreguntasRealizadasPor: usuario) size equals: 0.
