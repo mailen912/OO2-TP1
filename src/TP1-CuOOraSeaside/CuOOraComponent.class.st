@@ -54,14 +54,12 @@ aCanvas horizontalRule.
 
 { #category : #rendering }
 CuOOraComponent >> renderDisikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario).
-	self call:(self crearClase)] ;with:'dislike'
+aCanvas anchor callback: [ post haceDislikeUnUsuario: (self session usuario)];with:'dislike'
 ]
 
 { #category : #rendering }
 CuOOraComponent >> renderLikeButton:aCanvas post:post [
-aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario).
-	self call:(self crearClase)] ;with:'like'
+aCanvas anchor callback: [ post haceLikeUnUsuario: (self session usuario)];with:'like'
 ]
 
 { #category : #'as yet unclassified' }
