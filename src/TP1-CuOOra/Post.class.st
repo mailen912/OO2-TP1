@@ -39,33 +39,14 @@ Post >> fechaHora [
 
 { #category : #public }
 Post >> haceDislikeUnUsuario: usuariox [
-	"Un usuario puede realizar un solo like o un solo dislike para una pregunta o respuesta. Si un usuario dio like a una pregunta o respuesta, y luego da un dislike, lo que sucece es que se elimina el like anterior, y se agrega el dislike"
-
-	"(dislikes anySatisfy: [ :mg | mg perteneceAlUsuario: usuariox ])
-		ifFalse: [ | nuevoDislike reaccion |
-			nuevoDislike := Reaccion delUsuario: usuariox.
-			dislikes add: nuevoDislike.
-			reaccion := likes
-				detect: [ :like | like perteneceAlUsuario: usuariox ]
-				ifNone: [ nil ].
-			reaccion ifNotNil: [ likes remove: reaccion ] ]"
-		self reacciona:dislikes y:likes unUsuario:usuariox.
+		self reaccionaCon:dislikes y:likes unUsuario:usuariox.
 		
 ]
 
 { #category : #public }
 Post >> haceLikeUnUsuario: usuariox [
-	"Un usuario puede realizar un solo like para una pregunta o respuesta.Si un usuario dio dislike a una pregunta o respuesta, y luego da un like, lo que sucece es que se elimina el dislike anterior, y se agrega el like"
 
-"	(likes anySatisfy: [ :mg | mg perteneceAlUsuario: usuariox ])
-		ifFalse: [ | nuevoLike reaccion |
-			nuevoLike := Reaccion delUsuario: usuariox.
-			likes add: nuevoLike.
-			reaccion := dislikes
-				detect: [ :dislike | dislike perteneceAlUsuario: usuariox ]
-				ifNone: [ nil ].
-			reaccion ifNotNil:[ dislikes remove: reaccion ] ]"
-				self reacciona:likes y:dislikes unUsuario:usuariox.
+				self reaccionaCon:likes y:dislikes unUsuario:usuariox.
 		
 ]
 
@@ -84,16 +65,17 @@ Post >> puntaje [
 ^(self cantidadDeLikes) -(self cantidadDeDislikes ) 
 ]
 
-{ #category : #'as yet unclassified' }
-Post >> reacciona:reaccion y:antireaccion unUsuario:usuariox [
-(reaccion  anySatisfy: [ :mg | mg perteneceAlUsuario: usuariox ])
-		ifFalse: [ | nuevaReaccion otro |
-			nuevaReaccion := Reaccion delUsuario: usuariox.
-			reaccion  add: nuevaReaccion.
-			otro := antireaccion 
-				detect: [ :anti | anti perteneceAlUsuario: usuariox ]
-				ifNone: [ nil ].
-			otro ifNotNil: [ antireaccion  remove: otro ] ]
+{ #category : #accessing }
+Post >> reaccionaCon: reacciones y: antireacciones unUsuario: usuariox [
+	| nuevaReaccion antireaccion |
+	(reacciones anySatisfy: [ :reaccion | reaccion perteneceAlUsuario: usuariox ])
+		ifTrue: [ ^ self ].
+	nuevaReaccion := Reaccion delUsuario: usuariox.
+	reacciones add: nuevaReaccion.
+	antireaccion := antireacciones
+		detect: [ :anti | anti perteneceAlUsuario: usuariox ]
+		ifNone: [ nil ].
+	antireaccion ifNotNil: [ antireacciones remove: antireaccion ]
 ]
 
 { #category : #public }
