@@ -39,14 +39,14 @@ Post >> fechaHora [
 
 { #category : #public }
 Post >> haceDislikeUnUsuario: usuariox [
-		self reaccionaCon:dislikes y:likes unUsuario:usuariox.
+		self reaccionaCon:dislikes y:likes unUsuario:usuariox
 		
 ]
 
 { #category : #public }
 Post >> haceLikeUnUsuario: usuariox [
 
-				self reaccionaCon:likes y:dislikes unUsuario:usuariox.
+				self reaccionaCon:likes y:dislikes unUsuario:usuariox
 		
 ]
 
