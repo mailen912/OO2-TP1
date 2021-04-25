@@ -65,7 +65,7 @@ Post >> puntaje [
 ^(self cantidadDeLikes) -(self cantidadDeDislikes ) 
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 Post >> reaccionaCon: reacciones y: antireacciones unUsuario: usuariox [
 	| nuevaReaccion antireaccion |
 	(reacciones anySatisfy: [ :reaccion | reaccion perteneceAlUsuario: usuariox ])
