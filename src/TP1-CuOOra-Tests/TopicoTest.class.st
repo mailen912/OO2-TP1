@@ -24,7 +24,7 @@ TopicoTest >> setUp [
 { #category : #tests }
 TopicoTest >> testAgregarPregunta [
 
-   self assert: topico1 obtenerTodasLasPreguntas isEmpty equals:true.
+   self assert: topico1 obtenerTodasLasPreguntas isEmpty .
 	topico1 agregarPregunta: pregunta.
 	self assert: topico1 obtenerTodasLasPreguntas size equals: 1
 
@@ -69,6 +69,6 @@ TopicoTest >> testTengoPregunta [
 p1:= Pregunta newConTitulo: 'EE' descripcion:'11'  yUsuario: usuario.
 p2:=Pregunta newConTitulo: 'NO' descripcion:'12'  yUsuario: usuario.
 topico1 agregarPregunta: p1.
-self assert: (topico1 tengoPregunta: p1)equals:true.
-self assert: (topico1 tengoPregunta: p2)equals:false.
+self assert: (topico1 tengoPregunta: p1).
+self deny:(topico1 tengoPregunta: p2)
 ]

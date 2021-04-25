@@ -21,7 +21,7 @@ like:=Reaccion delUsuario: usuariox.
 { #category : #tests }
 ReaccionTest >> testPerteneceAlUsuario [
 |usuarioy|
-self assert: (like perteneceAlUsuario: usuariox) equals: true.
+self assert: (like perteneceAlUsuario: usuariox) .
 usuarioy:=Usuario nombreDeUsuario: 'Useryyum' contraseña:'xxxq0'.
-self assert: (like perteneceAlUsuario: usuarioy) equals: false.
+self deny:  (like perteneceAlUsuario: usuarioy) 
 ]

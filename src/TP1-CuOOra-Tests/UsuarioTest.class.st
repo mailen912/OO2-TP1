@@ -23,7 +23,7 @@ UsuarioTest >> setUp [
 { #category : #tests }
 UsuarioTest >> testObtenerPreguntasDeTopicosDeInteres [
 "compruebo que obtengo una coleccion de todas las preguntas pertenecientes a los topicos de interes del usuario"
-|topico1 preguntas pregunta1 pregunta2|
+|topico1  pregunta1 pregunta2|
 
 pregunta1:=Pregunta newConTitulo: 'pregunta 1' descripcion:'descripcion 1'  yUsuario:usuario.
 pregunta2:=Pregunta newConTitulo: 'pregunta 2' descripcion:'descripcion 2'  yUsuario:usuariox.  
@@ -33,12 +33,12 @@ topico1 :=Topico nombreDeTopico: 'SMALLTALK' descripcion:'OO2'.
 topico agregarPregunta: pregunta1.
 topico1 agregarPregunta: pregunta2.
 
-self assert: (usuario obtenerPreguntasDeTopicosDeInteres) isEmpty equals:true.
+self assert: (usuario obtenerPreguntasDeTopicosDeInteres) isEmpty .
 
 usuario registrarTopicoDeInteres: topico .
 usuario registrarTopicoDeInteres: topico1 .
 
-self assert: ((usuario obtenerPreguntasDeTopicosDeInteres size)=2)equals: true.
+self assert: (usuario obtenerPreguntasDeTopicosDeInteres size)equals: 2.
 ]
 
 { #category : #tests }

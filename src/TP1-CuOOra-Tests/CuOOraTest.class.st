@@ -59,7 +59,7 @@ cuoora topicos first
     cuoora topicos last obtenerTodasLasPreguntas first
         agregarRespuesta: 'Res 1'
         creador: usuario.
-    self assert: (cuoora calcularPuntaje: usuario) equals: 40 + 50.
+    self assert: (cuoora calcularPuntaje: usuario) equals: 90.
 "Realizo una respuesta a una pregunta que realizó otro usuario (50 * c/preg)"
     cuoora topicos first obtenerTodasLasPreguntas first
         haceLikeUnUsuario: usuario.    "Pregunta 1"
@@ -69,7 +69,7 @@ cuoora topicos first
         haceLikeUnUsuario: usuario.    "Res 1"
     self
         assert: (cuoora calcularPuntaje: usuario)
-        equals: 40 + 50 + (1 - 1) + (0 - 0) + (0 - 0) + (1 - 0)
+        equals: 91
         "Realizo en el primer topico un like y un dislike a dos preguntas(1-1),las respuestas no tuvieron like/dislike (0-0).
         En el segunto topico no dio like/dislike a ninguna pregunta (0-0)y le dio like a una respuesta (1-0)"
 ]
@@ -96,31 +96,53 @@ self assert: (cuoora obtenerPreguntasRealizadasPor: usuario)size equals:0.
 
 { #category : #tests }
 CuOOraTest >> testObtenerPreguntasRelevantes [
-"Obtener preguntas relevantes para un usuario determinado: Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
-|topico1 p2 p3 topico2  usuario p1  NoSeguido Seguido|
-NoSeguido:=Usuario nombreDeUsuario: 'E' contraseña:'1212'.
-Seguido:= Usuario nombreDeUsuario: 'si' contraseña:'323'.
-p1:=Pregunta newConTitulo: 'titulo' descripcion:'??'  yUsuario: NoSeguido .
-topico1:=cuoora agregarTopicoConNombre: 'T1' yDescripcion:'t1'.
-topico1 agregarPregunta: p1.
-usuario :=cuoora agregarUsuarioConNombre: 'Usuario' yContraseña:'contra'.
-self assert: ((cuoora obtenerPreguntasRelevantes: usuario)isEmpty ) equals: true.
-usuario registrarTopicoDeInteres: topico1 .
-usuario seguirUsuario: Seguido.
-self assert: ((cuoora obtenerPreguntasRelevantes: usuario)size=1) equals: true.
-p2:=Pregunta newConTitulo: 'preg2' descripcion:'??'  yUsuario: NoSeguido .
-p3:=Pregunta newConTitulo: 'preg3' descripcion:'??'  yUsuario: Seguido .
- topico2:=cuoora agregarTopicoConNombre: 'T2' yDescripcion:'t2'.
-topico2 agregarPregunta: p2.
-self assert: ((cuoora obtenerPreguntasRelevantes: usuario)size=1) equals: true.
-topico2 agregarPregunta: p3.
-self assert: ((cuoora obtenerPreguntasRelevantes: usuario)size=2) equals: true.
-topico1 agregarPregunta: p3.
-self assert: ((cuoora obtenerPreguntasRelevantes: usuario)size=2) equals: true.
+	"Obtener preguntas relevantes para un usuario determinado: Se considera relevante una pregunta cuando ésta pertenece a un tópico de interés para el usuario en cuestión o bien cuando fue realizada por alguno de los usuarios que sigue en la red social."
 
- self assert: ((cuoora obtenerPreguntasRelevantes: usuario)includes:  p1) equals: true.
- self assert: ((cuoora obtenerPreguntasRelevantes: usuario)includes:  p3) equals: true.
- self assert: ((cuoora obtenerPreguntasRelevantes: usuario)includes: p2) equals: false.
+	| topico1 p2 p3 topico2 usuario p1 NoSeguido Seguido |
+	NoSeguido := Usuario nombreDeUsuario: 'E' contraseña: '1212'.
+	Seguido := Usuario nombreDeUsuario: 'si' contraseña: '323'.
+	p1 := Pregunta
+		newConTitulo: 'titulo'
+		descripcion: '??'
+		yUsuario: NoSeguido.
+	topico1 := cuoora agregarTopicoConNombre: 'T1' yDescripcion: 't1'.
+	topico1 agregarPregunta: p1.
+	usuario := cuoora
+		agregarUsuarioConNombre: 'Usuario'
+		yContraseña: 'contra'.
+	self assert: (cuoora obtenerPreguntasRelevantes: usuario) isEmpty.
+	usuario registrarTopicoDeInteres: topico1.
+	usuario seguirUsuario: Seguido.
+	self
+		assert: (cuoora obtenerPreguntasRelevantes: usuario) size
+		equals: 1.
+	p2 := Pregunta
+		newConTitulo: 'preg2'
+		descripcion: '??'
+		yUsuario: NoSeguido.
+	p3 := Pregunta
+		newConTitulo: 'preg3'
+		descripcion: '??'
+		yUsuario: Seguido.
+	topico2 := cuoora agregarTopicoConNombre: 'T2' yDescripcion: 't2'.
+	topico2 agregarPregunta: p2.
+	self
+		assert: (cuoora obtenerPreguntasRelevantes: usuario) size
+		equals: 1.
+	topico2 agregarPregunta: p3.
+	self
+		assert: (cuoora obtenerPreguntasRelevantes: usuario) size
+		equals: 2.
+	topico1 agregarPregunta: p3.
+	self
+		assert: (cuoora obtenerPreguntasRelevantes: usuario) size
+		equals: 2.
+	self
+		assert: ((cuoora obtenerPreguntasRelevantes: usuario) includes: p1).
+	self
+		assert: ((cuoora obtenerPreguntasRelevantes: usuario) includes: p3).
+	self
+		deny: ((cuoora obtenerPreguntasRelevantes: usuario) includes: p2)
 ]
 
 { #category : #tests }

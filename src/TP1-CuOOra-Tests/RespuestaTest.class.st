@@ -36,6 +36,5 @@ respuesta haceLikeUnUsuario: usuario3 .
 respuesta haceLikeUnUsuario: usuario4 .
 respuesta haceDislikeUnUsuario: usuario5.
 respuesta haceDislikeUnUsuario: usuario6.
-self assert: (respuesta puntaje =2)equals: true
-
+self assert: (respuesta puntaje)equals: 2
 ]
