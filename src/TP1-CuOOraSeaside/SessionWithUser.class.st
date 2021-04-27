@@ -12,6 +12,13 @@ Class {
 	#category : #'TP1-CuOOraSeaside'
 }
 
+{ #category : #initialization }
+SessionWithUser >> initialize [ 
+| application |
+application := WAAdmin register: LoginComponent asApplicationAt: 'InicioSesion'.
+application sessionClass: self class.
+]
+
 { #category : #accessing }
 SessionWithUser >> usuario [
 ^usuario 
