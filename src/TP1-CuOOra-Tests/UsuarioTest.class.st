@@ -44,18 +44,18 @@ self assert: (usuario obtenerPreguntasDeTopicosDeInteres size)equals: 2.
 { #category : #tests }
 UsuarioTest >> testRegistrarTopicoDeInteres [
 
-self assert: (usuario topicosDeInteres size = 0)."en un principio la coleccion de topicos de interes esta vacia".
+self assert: usuario topicosDeInteres size equals: 0."en un principio la coleccion de topicos de interes esta vacia".
 usuario registrarTopicoDeInteres: topico."agrego un topico de interes al usuario"
- self assert: (usuario topicosDeInteres size = 1)"ahora la coleccion de topicos de interes tiene 1 para ese usuario".
+ self assert: usuario topicosDeInteres size equals: 1"ahora la coleccion de topicos de interes tiene 1 para ese usuario".
 
 ]
 
 { #category : #test }
 UsuarioTest >> testSeguirUsuario [
 
- self assert: usuario siguiendo isEmpty equals:true.
+ self assert: usuario siguiendo isEmpty .
  usuario seguirUsuario: usuariox.
- self assert: usuario siguiendo isEmpty equals:false.
+ self deny: usuario siguiendo isEmpty.
  usuario seguirUsuario:usuariox.
  self assert: usuario siguiendo size equals:1.
 
