@@ -17,6 +17,35 @@ RespuestaTest >> setUp [
 	creador:=Usuario nombreDeUsuario: 'user23231' contraseña:'rrcwooq'. 
 	respuesta:=Respuesta conTexto: 'buena' yCreador:creador  .
 
+
+]
+
+{ #category : #tests }
+RespuestaTest >> testHaceDislikeUnUsuario [ 
+|usuariox|
+self assert: respuesta  cantidadDeDislikes equals:0."en un principio mi coleccion de dislikes esta vacia"
+usuariox:= Usuario nombreDeUsuario: 'Userxx' contraseña:'xx3242'.
+respuesta  haceLikeUnUsuario: usuariox ."el usuariox le da like a ese post"
+self assert: respuesta  cantidadDeLikes equals:1."mi coleccion de likes, en un principio vacia, ahora deberia tener 1"
+respuesta  haceDislikeUnUsuario: usuariox ."el mismo usuario que dio like a la post, ahora cambia de opinion y le da dislike"
+self  assert:  respuesta  cantidadDeDislikes equals: 1."ahora la cantidad de dislikes deberia ser 1"
+self assert:respuesta  cantidadDeLikes  equals: 0."ahora la cantidad de likes deberia ser 0"
+respuesta  haceDislikeUnUsuario: usuariox .
+self  assert: respuesta  cantidadDeDislikes equals:1."un usuario puede hacer como maximo un dislike"
+]
+
+{ #category : #tests }
+RespuestaTest >> testHaceLikeUnUsuario [
+|usuariox|
+self assert: respuesta  cantidadDeLikes equals:0."en un principio mi coleccion de likes esta vacia"
+usuariox:= Usuario nombreDeUsuario: 'Valen323' contraseña:'21334fx' .
+respuesta haceDislikeUnUsuario: usuariox ."el usuariox le da dislike a esa post"
+self assert: respuesta cantidadDeDislikes equals:1."mi coleccion de dislike, en un principio vacia, ahora deberia tener 1"
+respuesta  haceLikeUnUsuario: usuariox."el mismo usuario que dio dislike a la post, ahora cambia de opinion y le da like"
+self assert:respuesta cantidadDeLikes equals:1."ahora la cantidad de likes deberia ser 1"
+self assert: respuesta  cantidadDeDislikes equals:0."y la cantidad de dislikes deberia ser 0"
+respuesta  haceLikeUnUsuario: usuariox.
+self assert:respuesta  cantidadDeLikes equals:1 "un usuario puede hacer como maximo un like"
 ]
 
 { #category : #tests }
